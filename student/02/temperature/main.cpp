@@ -11,7 +11,7 @@ int main()
     fahrenheit = (temperature * 9.0 / 5) + 32;
     celsius = (temperature - 32) * 5.0 / 9;
     cout << temperature << " degrees Celsius is " << fahrenheit << " degrees Fahrenheit" << endl;
-    cout << temperature << " degrees Fahrenheit  is " << celsius << " degrees Celsius" << endl;
+    cout << temperature << " degrees Fahrenheit is " << celsius << " degrees Celsius" << endl;
 
     // Write your code here
 
