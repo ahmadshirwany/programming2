@@ -91,7 +91,7 @@ int main() {
         }
 
         cout << "Enter the text to be encrypted:";
-        getline(cin, inputText);
+        getline(std::cin, inputText);
 
     string encryptedText;
 
