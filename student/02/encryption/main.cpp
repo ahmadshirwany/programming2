@@ -14,7 +14,7 @@ bool check_key_length(std::string key)
 {
     int key_length = key.length();
 
-    return key_length = KEY_LENGTH;
+    return key_length == KEY_LENGTH;
 }
 bool check_key_lowercase (string key)
 {
@@ -77,7 +77,7 @@ int main() {
 
         cout << "Enter the encryption key: ";
 
-//        getline(std::cin, encryptionKey);
+        getline(std::cin, encryptionKey);
 
         if (!check_key(encryptionKey))
         {
@@ -91,7 +91,7 @@ int main() {
         }
 
         cout << "Enter the text to be encrypted:";
-//        getline(cin, inputText);
+        getline(cin, inputText);
 
     string encryptedText;
 
