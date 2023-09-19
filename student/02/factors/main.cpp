@@ -15,7 +15,7 @@ int main()
      int factor1, factor2;
      factor2 = number;
      factor1 = 0;
-    for ( int i = 1; i <number ; ++i ) {
+    for ( int i = 1; i <number+1 ; ++i ) {
         if (number%i == 0 ){
             if (number/i >= factor2){
                 factor1 = number/i;
