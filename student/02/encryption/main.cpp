@@ -70,14 +70,15 @@ return true;
 
 int main() {
 
-        string encryptionKey = "abcdefghijklmnopqrstuvwzyx";
-        string inputText = "thismessageisnotreallyencryptedtoomuch";
+        string encryptionKey = "";
+        string inputText = "";
 
         // get user input
 
         cout << "Enter the encryption key: ";
 
-        getline(std::cin, encryptionKey);
+
+        cin >> encryptionKey;
 
         if (!check_key(encryptionKey))
         {
@@ -90,8 +91,8 @@ int main() {
             return EXIT_FAILURE;
         }
 
-        cout << "Enter the text to be encrypted:";
-        getline(std::cin, inputText);
+    cout << "Enter the text to be encrypted: ";
+    cin >> inputText;
 
     string encryptedText;
 
