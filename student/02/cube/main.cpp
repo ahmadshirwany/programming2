@@ -18,7 +18,7 @@ int main()
 
     }
     else{
-        std::cout << "Entered number not an positive integer: ";
+        std::cout << "The cube of "<<number<<" is "<< number<<"." <<endl;
     }
     return 0;
 }
