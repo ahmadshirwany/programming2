@@ -25,7 +25,7 @@ int main()
         return 0;
     }
     else if (b>a){
-         cout<< "the maximum number of drwan balls is the total ammount of balls."<<endl;
+         cout<< "The maximum number of drawn balls is the total amount of balls."<<endl;
          return 0;
     }
     else {
