@@ -6,7 +6,8 @@ using namespace std;
 
 const std::string KEY_LENGTH_ERROR = "Error! The encryption key must contain 26 characters.",
              KEY_CASE_ERROR = "Error! The encryption key must contain all alphabets a-z.",
-             KEY_ALPHABET_ERROR = "Error! The encryption key must contain only lower case characters.";
+             KEY_ALPHABET_ERROR = "Error! The encryption key must contain only lower case characters.",
+             TEXT_ERROR = "Error! The text to be encrypted must contain only lower case characters.";
 
 const int KEY_LENGTH = 26;
 
@@ -47,21 +48,23 @@ bool check_key_alphabet(string key)
 
 bool check_key(string key)
 {
+    if (!check_key_alphabet(key))
+    {
+        cout << KEY_CASE_ERROR << endl;
+        return false;
+    }
     if(!check_key_length(key))
     {
         cout << KEY_LENGTH_ERROR << endl;
         return false;
     }
+
     if(!check_key_lowercase(key))
     {
         cout << KEY_CASE_ERROR << endl;
         return false;
     }
-if (!check_key_alphabet(key))
-{
-    cout << KEY_ALPHABET_ERROR << endl;
-    return false;
-}
+
 return true;
 }
 
@@ -80,19 +83,17 @@ int main() {
 
         cin >> encryptionKey;
 
-        if (!check_key(encryptionKey))
-        {
-            return EXIT_FAILURE;
-        }
 
-        if(!check_key_lowercase(encryptionKey))
-        {
-            cout << KEY_CASE_ERROR << endl;
-            return EXIT_FAILURE;
-        }
-
+    check_key(encryptionKey);
     cout << "Enter the text to be encrypted: ";
     cin >> inputText;
+
+
+    if(!check_key_lowercase(inputText))
+    {
+        cout << TEXT_ERROR << endl;
+        return false;
+    }
 
     string encryptedText;
 
