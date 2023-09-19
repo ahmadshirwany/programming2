@@ -13,6 +13,7 @@ int main()
     }
     else{
      int factor1, factor2;
+     factor2 = 0;
      factor1 = number;
      int b = number/2;
      if (b>10){
