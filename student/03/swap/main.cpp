@@ -4,9 +4,9 @@
 // Write your swap function here.
 
 
-void swap(int param1, int param2) {
-
-
+void swap(int const& param1, int const& param2) {
+    (void)(param1 * 2);
+    (void)(param2 + 1.0);
 }
 #ifndef UNIT_TESTING
 int main()
