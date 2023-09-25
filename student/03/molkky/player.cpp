@@ -15,7 +15,7 @@ int Player::get_points() const {
 }
 
 bool Player::has_won() const {
-    return hasWon;
+    return points >= 50;
 }
 
 void Player::add_points(int newPoints) {
