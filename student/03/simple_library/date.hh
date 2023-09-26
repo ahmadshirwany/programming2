@@ -26,8 +26,6 @@ public:
 
     // Prints the date in the format: dd.mm.yyyy.
     void print() const;
-    bool back() ;
-    bool back(int a);
 
 private:
     // Obvious attributes.
@@ -39,6 +37,5 @@ private:
     // otherwise returns false.
     bool is_leap_year() const;
 };
-
 
 #endif // DATE_HH
