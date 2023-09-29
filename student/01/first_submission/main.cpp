@@ -3,6 +3,11 @@
 
 int main()
 {
+    int i;
+
+    if ( i = 0 ) {
+        std::cout << "Hurrah" << std::endl;
+    }
     std::string name = "";
     std::cout << "Enter your name: ";
     getline(std::cin, name);
