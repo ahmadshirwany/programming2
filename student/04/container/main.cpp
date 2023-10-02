@@ -64,20 +64,33 @@ bool is_arithmetic_series(std::vector<int > ints){
     }
     return check;
 }
-bool is_geometric_series(std::vector<int > ints){
+bool is_geometric_series(std::vector<int> ints) {
     int len = ints.size();
     bool check = true;
-    if (len >1){
-        int r=  ints[1]/ints[0];
-         for(int i = 0; i < len;++i){
-             if (ints[i] != ints[0]*std::pow(r,i)){
-                 check = false;
-             }
-         }
+
+    if (len > 1) {
+        for (int i = 0; i < len; ++i) {
+            if (ints[i] != 0) {
+                check = false;
+                // Exit the loop if a non-zero element is found
+            }
+        }
+
+        if (check == true) {
+            return check;
+        } else {
+            check = true;
+            int r = ints[1] / ints[0];
+            for (int i = 0; i < len; ++i) {
+                if (ints[i] != ints[0] * std::pow(r, i)) {
+                    check = false;
+                }
+            }
+        }
+    } else {
+        check = false; // Handle the case of an empty or single-element array
     }
-    else {
-        check = false;
-    }
+
     return check;
 }
 void triple_integers(std::vector<int >& ints){
