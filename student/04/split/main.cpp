@@ -5,10 +5,36 @@
 
 // TODO: Implement split function here
 // Do not change main function
+std::vector<std::string> split(const std::string& line, char separator , bool check = false)
+  {
+   std::string obj = "";
+   std::vector<std::string> new_vector ;
+   for (size_t i = 0; i < line.length(); ++i) {
+        char a =    line[i] ;
+        if (a == separator){
+            if (check==true ){
+                if (obj != ""){
 
+                new_vector.push_back(obj);
+                obj = "";
+                }
+            }
+             else{
+                    new_vector.push_back(obj);
+                    obj = "";
+                }
+            }
 
-int main()
-{
+        else{
+            obj += a;
+
+        }
+   }
+   new_vector.push_back(obj);
+   return new_vector;
+
+}
+int main(){
     std::string line = "";
     std::cout << "Enter a string: ";
     getline(std::cin, line);
