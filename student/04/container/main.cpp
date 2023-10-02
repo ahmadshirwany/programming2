@@ -66,17 +66,17 @@ bool is_arithmetic_series(std::vector<int > ints){
 }
 bool is_geometric_series(std::vector<int> ints) {
     int len = ints.size();
-    bool check = true;
+    bool check = false;
 
     if (len > 1) {
         for (int i = 0; i < len; ++i) {
             if (ints[i] != 0) {
-                check = false;
+                check = true;
                 // Exit the loop if a non-zero element is found
             }
         }
 
-        if (check == true) {
+        if (check == false) {
             return check;
         } else {
             check = true;
