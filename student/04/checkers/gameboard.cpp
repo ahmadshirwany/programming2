@@ -1,10 +1,13 @@
 #include "gameboard.hh"
 #include <iostream>
+#include <algorithm>
 
-GameBoard::GameBoard()
+GameBoard::GameBoard(char pieceChar ): pieceChar(pieceChar)
 {
-
+    initialize_cordinate();
+    moves = 0;
 }
+
 
 void GameBoard::print() const
 {
@@ -27,14 +30,28 @@ void GameBoard::print() const
 
     // Tulostetaan pelilaudan varsinainen sisältö
     // Printing the actual content of the gameboard
-    for(unsigned int i = 0; i < SIZE; ++i)
+    for(unsigned int j = 0; j < SIZE; ++j)
     {
-        std::cout << "| " << i + 1 << " | ";
-        for(unsigned int j = 0; j < SIZE; ++j)
+        std::cout << "| " << j + 1 << " | ";
+        for(unsigned int i = 0; i < SIZE; ++i)
         {
             // TODO:
             // Tulosta tässä tyhjä tai pelilaudan alkio (i, j)
             // Print here empty or the element (i, j) in the gameboard
+            bool check = false;
+             for( auto cordinate : cordinates ){
+                 if (cordinate.x == i && cordinate.y==j){
+                     check= true;
+
+                 }
+
+             }
+             if (check){
+                 std::cout << pieceChar<<" ";
+             }
+             else{
+                  std::cout << " "  <<" ";
+             }
         }
         std::cout << "|" << std::endl;
     }
@@ -43,6 +60,7 @@ void GameBoard::print() const
     // Printing lower border
     print_line(LEFT_COLUMN_WIDTH + 1 + 2 * SIZE + 1, '=');
 }
+
 
 void GameBoard::print_line(unsigned int length, char fill_character) const
 {
