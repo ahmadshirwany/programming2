@@ -7,6 +7,21 @@ GameBoard::GameBoard(char pieceChar ): pieceChar(pieceChar)
     initialize_cordinate();
     moves = 0;
 }
+void GameBoard::initialize_cordinate(){
+    for(unsigned int i = 0; i < SIZE; ++i)
+    {
+        for(unsigned int j = 0; j < SIZE; ++j)
+        {
+            if  (i>=2 &&i <6 &&j>=2 &&j <6  ){
+
+            } else{
+               cordinates.push_back({i, j});
+            }
+
+}
+    }
+}
+
 
 
 void GameBoard::print() const
