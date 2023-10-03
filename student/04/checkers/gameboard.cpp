@@ -94,6 +94,32 @@ bool GameBoard::isvalidmove(vector<int> cor){
 return true;
 }
 
+void GameBoard::makemove(vector<int> cor){
+
+    unsigned int midx= (cor[0]+cor[2])/2;
+    unsigned int midy = (cor[1]+cor[3])/2;
+
+    for(auto iter = cordinates.begin(); iter != cordinates.end(); ++iter){
+        if(iter->x == (unsigned int)cor[0]-1 && iter->y == (unsigned int)cor[1]-1){
+            iter = cordinates.erase(iter);
+            break;
+        }
+    }
+    for(auto iter = cordinates.begin(); iter != cordinates.end(); ++iter){
+        if(iter->x == (unsigned int)midx-1 && iter->y == (unsigned int)midy-1){
+            iter = cordinates.erase(iter);
+            break;
+        }
+    }
+
+    Point p3 = {(unsigned int)cor[2]-1,(unsigned int)cor[3]-1};
+    cordinates.push_back(p3);
+    moves++;
+    print();
+
+
+}
+
 void GameBoard::print() const
 {
     // Tulostetaan yläreuna
