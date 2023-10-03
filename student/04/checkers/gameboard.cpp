@@ -23,6 +23,21 @@ void GameBoard::initialize_cordinate(){
 }
 
 
+bool GameBoard::isvalidinput(vector<int> cor){
+     bool check = false;
+     for (const int a :cor ){
+         if (a>0&&a<9){
+
+
+         }
+         else{
+             check = true;
+             break;
+         }
+     }
+     return check;
+
+}
 
 void GameBoard::print() const
 {
