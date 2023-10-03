@@ -39,6 +39,61 @@ bool GameBoard::isvalidinput(vector<int> cor){
 
 }
 
+bool GameBoard::isvalidmove(vector<int> cor){
+    bool start_check = false;
+    for (const Point& p : cordinates) {
+           if (p.x+1 == (unsigned int)cor[0] && p.y+1 == (unsigned int)cor[1]) {
+               start_check = true;
+               break; // Stop searching once found
+           }
+       }
+    if (start_check == false){
+        return start_check;
+    }
+    bool destination_check = false;
+    for (const Point& p : cordinates) {
+           if (p.x+1 == (unsigned int)cor[2] && p.y+1 == (unsigned int)cor[3]) {
+               destination_check = true;
+                cout<<"destination point"<<endl;
+               break; // Stop searching once found
+           }
+       }
+    if (destination_check == true){
+        return false;
+    }
+    int a = cor[0]-cor[2];
+    if (a<0){
+        a =-a;
+    }
+    int b = cor[1]-cor[3];
+    if (b<0){
+        b =-b;
+    }
+    if(!(a==b)){
+        return false;
+    }
+    if (!((a < 3 && a > 0) && (b< 3 && b>0))){
+        return false;
+    }
+
+    unsigned int midx= (cor[0]+cor[2])/2;
+    unsigned int midy = (cor[1]+cor[3])/2;
+    bool mid_cor_check = false;
+    for (const Point& p : cordinates) {
+           if (p.x+1 == midx && p.y+1 == midy) {
+               mid_cor_check = true;
+               break; // Stop searching once found
+           }
+       }
+    if (!mid_cor_check){
+         cout<<"mid point"<<endl;
+        return false;
+    }
+
+
+return true;
+}
+
 void GameBoard::print() const
 {
     // Tulostetaan yläreuna
