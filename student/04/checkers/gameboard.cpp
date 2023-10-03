@@ -93,7 +93,11 @@ bool GameBoard::isvalidmove(vector<int> cor){
 
 return true;
 }
+void GameBoard::print_moves() const{
+    cout<< moves <<" move(s) made."<<endl;
+    cout<< cordinates.size()<<" piece(s) left."<<endl;
 
+}
 void GameBoard::makemove(vector<int> cor){
 
     unsigned int midx= (cor[0]+cor[2])/2;
