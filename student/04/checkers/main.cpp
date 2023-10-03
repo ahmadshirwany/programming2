@@ -33,8 +33,8 @@ int main()
    gameb.print();
     while (true) {
        cor.clear();
-       cout << "Enter start and destination points (e.g., 12 34) or q to quit: ";
        string moveInput ;
+       cout << "Enter start and destination points (e.g., 12 34) or q to quit: ";
        std::getline(std::cin, moveInput);
 
        if (moveInput == "q") {
