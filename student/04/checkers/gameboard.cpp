@@ -54,7 +54,6 @@ bool GameBoard::isvalidmove(vector<int> cor){
     for (const Point& p : cordinates) {
            if (p.x+1 == (unsigned int)cor[2] && p.y+1 == (unsigned int)cor[3]) {
                destination_check = true;
-                cout<<"destination point"<<endl;
                break; // Stop searching once found
            }
        }
@@ -86,7 +85,6 @@ bool GameBoard::isvalidmove(vector<int> cor){
            }
        }
     if (!mid_cor_check){
-         cout<<"mid point"<<endl;
         return false;
     }
 
