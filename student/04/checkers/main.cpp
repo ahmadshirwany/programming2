@@ -5,23 +5,19 @@
 #include <limits>
 
 using namespace std;
-bool is_digits(string& str)
-{
-    for (char ch : str) {
-         // ASCII Val converted
-        if (ch == ' ') {
-                    // Ignore spaces
-                    continue;
-                }
-        if (!(ch >= 48 && ch <= 57)) {
 
-            return false;
+void string_to_vector(vector<int>& cor ,string moveInput){
+    for (unsigned int i = 0; i < moveInput.size(); i++) {
+        if (moveInput[i] == ' ') {
+            // Ignore spaces
+            continue;
+        }
+        else{
+            cor.push_back( int(moveInput[i]) - 48);
         }
     }
 
-    return true;
 }
-
 int main()
 {
    char pieceChar;
@@ -40,39 +36,26 @@ int main()
            gameb.print_moves();
            break;
        }
-       if (moveInput.size()!=7){
+       if (gameb.isvalidinput_string(moveInput)){
            cout<<"Invalid start/destination point."<<endl;
            continue;
        }
-       if (!is_digits(moveInput)){
-            cout<<"Invalid start/destination point."<<endl;
-            continue;
-       }
 
-       vector<int> cor ;
-        for (unsigned int i = 0; i < moveInput.size(); i++) {
-            if (moveInput[i] == ' ') {
-                // Ignore spaces
-                continue;
-            }
-            else{
-                cor.push_back( int(moveInput[i]) - 48);
-            }
-        }
-       if (cor.size()!=4){
-            cout<<"Invalid start/destination point."<<endl;
-             continue;
-       }
-       if (gameb.isvalidinput(cor)){
+
+       vector<int> moving_cordinate ;
+       string_to_vector(moving_cordinate,moveInput);
+
+
+       if (gameb.isvalidcordinates(moving_cordinate)){
            cout<<"Invalid start/destination point."<<endl;
             continue;
        }
 
-       if (!gameb.isvalidmove(cor)){
+       if (!gameb.isvalidmove(moving_cordinate)){
             cout<<"Cannot move from start point to destination point."<<endl;
              continue;
        }
-       gameb.makemove(cor);
+       gameb.makemove(moving_cordinate);
     }
 
    return 0;

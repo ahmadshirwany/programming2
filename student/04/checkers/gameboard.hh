@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 #ifndef GAMEBOARD_HH
 #define GAMEBOARD_HH
 using namespace std;
@@ -30,8 +31,9 @@ public:
     void print() const;
     void print_moves() const;
     bool isvalidmove(vector<int> cor);
-    bool isvalidinput(vector<int> cor);
+    bool isvalidinput_string(string moveInput);
     void makemove(vector<int> cor);
+    bool isvalidcordinates (vector<int> cor);
 
 
 private:

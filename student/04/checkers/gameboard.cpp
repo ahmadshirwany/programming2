@@ -22,8 +22,28 @@ void GameBoard::initialize_cordinate(){
     }
 }
 
+bool GameBoard::isvalidinput_string(string moveInput){
+    if (moveInput.size()!=7){
+        return true;
+    }
+    for (char ch : moveInput) {
+         // ASCII Val converted
+        if (ch == ' ') {
+                    // Ignore spaces
+                    continue;
+                }
+        if (!(ch >= 48 && ch <= 57)) {
 
-bool GameBoard::isvalidinput(vector<int> cor){
+            return true;
+        }
+    }
+
+    return false;
+}
+bool GameBoard::isvalidcordinates(vector<int> cor){
+    if (cor.size()!=4){
+        return true;
+    }
      bool check = false;
      for (const int a :cor ){
          if (a>0&&a<9){
