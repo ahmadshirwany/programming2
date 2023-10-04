@@ -69,7 +69,7 @@ int main()
        }
 
        if (!gameb.isvalidmove(cor)){
-            cout<<"Invalid start/destination point."<<endl;
+            cout<<"Cannot move from start point to destination point."<<endl;
              continue;
        }
        gameb.makemove(cor);
