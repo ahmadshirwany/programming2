@@ -6,21 +6,21 @@ using namespace std;
 
 int main() {
   string filename = "";
-  cout << "Input file name: ";
+  cout << "Input file: ";
   getline(cin, filename);
 
   ifstream inputFile(filename);
   if ( not inputFile ) {
-      cout << "Error: failed opening the file." << endl;
+      cout << "Error: The file " << filename<< " cannot be opened."<<endl;
       return 1;
   }
   string outputFilename = "";
-      cout << "Output file name: ";
+      cout << "Output file: ";
       getline(cin, outputFilename);
 
       ofstream outputFile(outputFilename);
       if (!outputFile) {
-          cout << "Error: Failed to open the output file." << endl;
+          cout <<  "Error: The file " << outputFilename<< " cannot be opened."<<endl;
           inputFile.close(); // Close the input file before exiting
           return 1; // Return an error code
       }
