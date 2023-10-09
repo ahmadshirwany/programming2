@@ -10,14 +10,14 @@ int main() {
   getline(cin, filename);
 
   ifstream inputFile(filename);
-  if ( not inputFile ) {
-      cout << "Error: The file " << filename<< " cannot be opened."<<endl;
-      return 1;
-  }
+
   string outputFilename = "";
       cout << "Output file: ";
       getline(cin, outputFilename);
-
+      if ( not inputFile ) {
+          cout << "Error: The file " << filename<< " cannot be opened."<<endl;
+          return 1;
+      }
       ofstream outputFile(outputFilename);
       if (!outputFile) {
           cout <<  "Error: The file " << outputFilename<< " cannot be opened."<<endl;
