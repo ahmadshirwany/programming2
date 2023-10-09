@@ -15,12 +15,12 @@ int main() {
       cout << "Output file: ";
       getline(cin, outputFilename);
       if ( not inputFile ) {
-          cout << "Error: The file " << filename<< " cannot be opened."<<endl;
+          cout << "Error! The file " << filename<< " cannot be opened."<<endl;
           return 1;
       }
       ofstream outputFile(outputFilename);
       if (!outputFile) {
-          cout <<  "Error: The file " << outputFilename<< " cannot be opened."<<endl;
+          cout <<  "Error! The file " << outputFilename<< " cannot be opened."<<endl;
           inputFile.close(); // Close the input file before exiting
           return 1; // Return an error code
       }
