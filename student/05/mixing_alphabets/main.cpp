@@ -25,15 +25,10 @@ int main()
 
         // TODO: implement your solution here
          if (!(word.length() <= 2)) {
-             std::string mixed_word = word.substr(0, 1); // Keep the first letter
-
-             // Generate a random permutation of the middle letters
+             std::string mixed_word = word.substr(0, 1);
              std::string middle = word.substr(1, word.length() - 2);
-              // Standard mersenne_twister_engine
              std::shuffle(middle.begin(), middle.end(), generator);
-
              mixed_word += middle;
-
              mixed_word += word[word.length() - 1];
 
              std::cout << mixed_word << std::endl;
