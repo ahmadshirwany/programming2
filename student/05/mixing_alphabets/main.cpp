@@ -29,9 +29,8 @@ int main()
 
              // Generate a random permutation of the middle letters
              std::string middle = word.substr(1, word.length() - 2);
-             std::random_device rd;
-             std::mt19937 g(rd()); // Standard mersenne_twister_engine
-             std::shuffle(middle.begin(), middle.end(), g);
+              // Standard mersenne_twister_engine
+             std::shuffle(middle.begin(), middle.end(), generator);
 
              mixed_word += middle;
 
