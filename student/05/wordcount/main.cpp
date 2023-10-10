@@ -20,9 +20,7 @@ int main() {
     } else {
         string line;
         map<string, vector<int>> result;
-
         int line_number = 1;
-
         while (getline(input_object, line)) {
             string key = "";
             vector<int> numbers;
@@ -45,7 +43,6 @@ int main() {
                     key += cha;
                 }
             }
-
             if (!result.empty() && result.find(key) != result.end()) {
                 if (find(result[key].begin(), result[key].end(), line_number) == result[key].end()) {
                     result[key][0]++;
@@ -57,9 +54,8 @@ int main() {
 
             line_number++;
         }
-
         for (const auto& pair : result) {
-            cout << pair.first << ": ";
+            cout << pair.first << " "<<pair.second[0] << ": ";
             for (size_t i = 1; i < pair.second.size(); i++) {
                 cout << pair.second[i];
                 if (i != pair.second.size() - 1) {
