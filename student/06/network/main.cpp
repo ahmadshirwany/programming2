@@ -48,20 +48,24 @@ void print_recusive(const std::string& key,   map<string, vector<string>> map_of
 
 }
 void count(const std::string& key, const std::map<std::string, std::vector<std::string>>& map_of_vectors, int& network_count) {
+    if (map_of_vectors.count(key) > 0) {
     for (const std::string& new_key : map_of_vectors.at(key)) { // Use const reference here
         if (map_of_vectors.count(new_key) > 0) {
             count(new_key, map_of_vectors, network_count);
         }
         network_count++;
     }
+    }
 }
 void depth(const std::string& key, const std::map<std::string, std::vector<std::string>>& map_of_vectors, int& depth_count) {
-     for (const std::string& new_key : map_of_vectors.at(key)) {
+    if (map_of_vectors.count(key) > 0) {
+    for (const std::string& new_key : map_of_vectors.at(key)) {
          if (map_of_vectors.count(new_key) > 0) {
             count(new_key, map_of_vectors, depth_count);
          }
      }
        depth_count++;
+    }
 }
 
 
