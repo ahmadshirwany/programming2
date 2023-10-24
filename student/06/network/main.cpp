@@ -69,7 +69,22 @@ int depth(const std::string& key, const std::map<std::string, std::vector<std::s
     depth_count++;
    return depth_count;
 }
+int depth2(const std::string& key, const std::map<std::string, std::vector<std::string>>& map_of_vectors) {
+    if (map_of_vectors.count(key) == 0) {
+        return 0; // Base case: no further depth
+    }
 
+    int max_child_depth = 0;
+
+    for (const std::string& new_key : map_of_vectors.at(key)) {
+        int child_depth = depth2(new_key, map_of_vectors);
+        if (child_depth > max_child_depth) {
+            max_child_depth = child_depth;
+        }
+    }
+
+    return 1 + max_child_depth; // Add 1 for the current level
+}
 
 
 int main()
@@ -141,16 +156,16 @@ int main()
                 continue;
             }
             std::string id = parts.at(1);
-            int depth_count = 0;
-            int a = 0;
-            if (map_of_vectors.count(id) > 0) {
-            for (const std::string& new_key : map_of_vectors.at(id)) {
-                a = depth(new_key,map_of_vectors,0);
-                if(a>depth_count){
-                    depth_count = a;
-                }
-            }
-            }
+            int depth_count = depth2(id,map_of_vectors);
+//            int a = 0;
+//            if (map_of_vectors.count(id) > 0) {
+//            for (const std::string& new_key : map_of_vectors.at(id)) {
+//                a = depth(new_key,map_of_vectors,0);
+//                if(a>depth_count){
+//                    depth_count = a;
+//                }
+//            }
+//            }
             cout << depth_count+1<<endl;
 
             // TODO: Implement the command here!
