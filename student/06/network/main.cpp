@@ -62,9 +62,10 @@ void depth(const std::string& key, const std::map<std::string, std::vector<std::
     for (const std::string& new_key : map_of_vectors.at(key)) {
          if (map_of_vectors.count(new_key) > 0) {
             count(new_key, map_of_vectors, depth_count);
+            depth_count++;
          }
      }
-       depth_count++;
+
     }
 }
 
@@ -141,7 +142,7 @@ int main()
             std::string id = parts.at(1);
             int depth_count = 0;
             depth(id,map_of_vectors,depth_count);
-            cout << depth_count-1<<endl;
+            cout << depth_count+1<<endl;
 
             // TODO: Implement the command here!
 
