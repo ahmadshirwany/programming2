@@ -281,7 +281,7 @@ int main()
 
               vector<string> cmd_vec = split(cmd,' ');
 
-             if (cmd_vec.at(0)=="theaters_of_play"){
+             if (cmd_vec.at(0)=="theatres_of_play"){
                  size_t found = cmd.find("\"");
                  if (found != std::string::npos) {
                       vector<string> cmd_vec;
