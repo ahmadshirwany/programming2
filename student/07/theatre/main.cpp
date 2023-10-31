@@ -81,7 +81,7 @@ bool hasAlias (string &play, string &alias){
 }
 bool read_data(map<string,Theater> &theaters){
     string fileName;
-    cout <<"Input file:";
+    cout <<"Input file: ";
     getline(cin, fileName);
     ifstream file(fileName);
     if(file){
