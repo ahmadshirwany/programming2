@@ -98,6 +98,9 @@ bool read_data(map<string,Theater> &theaters){
                        break; // No need to continue checking once an empty string is found
                    }
                }
+               if (parts.size()<5){
+                   hasEmptyString = true;
+               }
 
                if (hasEmptyString) {
                    std::cout << EMPTY_FIELD<< to_string(count) << std::endl;
@@ -259,7 +262,7 @@ int main()
     bool check;
     check = read_data(theaters);
     if (!check){
-        return 0;
+        return EXIT_FAILURE;
     }
     string cmd;
     while(true){
