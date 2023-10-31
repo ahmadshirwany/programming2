@@ -176,26 +176,26 @@ void print_plays_in_town(map<string,Theater> const &theaters,const string city){
        }
       std::sort(theatersInCity.begin(), theatersInCity.end(), compareTheaterNames);
       for (const Theater& theater : theatersInCity) {
-              std::vector<Play> playsWithFreeSeats;
+              map<string, Play> playsWithFreeSeats;
               for (const Play& play : theater.plays) {
                   if (play.seat > 0) {
-                      playsWithFreeSeats.push_back(play);
+                      playsWithFreeSeats[play.name] = play;
                   }
               }
-              std::sort(playsWithFreeSeats.begin(), playsWithFreeSeats.end(), comparePlayNames);
-               if (!playsWithFreeSeats.empty()) {
-                      for (const Play& play : playsWithFreeSeats) {
-                          if (!play.alias.empty()) {
-                              cout<< theater.name<<" : "<<play.name<<" -- "<<play.alias <<" : "<<play.seat<<endl;
-                          }
-                          else{
-                              cout<< theater.name<<" : "<<play.name<<" : "<<play.seat<<endl;
+              map<string, Play> sortedMap(playsWithFreeSeats.begin(), playsWithFreeSeats.end());
+               if (!sortedMap.empty()) {
+                   for (const auto& pair : sortedMap) {
+                       if (pair.second.has_alias){
+                            cout<<theater.name<<" : "<<pair.first<<" -- "<<pair.second.alias<<" : "<<pair.second.seat<<endl;
+                       }
+                       else{
+                           cout<<theater.name<<" : "<<pair.first<<" : "<<pair.second.seat<<endl;
+                       }
+                   }
 
-                          }
-                      }
                }
                else{
-                   cout << "No plays available"<<endl;
+                   cout << NOT_AVAILABLE<<endl;
                }
 
 
@@ -238,7 +238,7 @@ void print_plays(map<string,Theater> const &theaters){
            for (const Play& play : theater.plays) {
                // Print alias with " *** " separator if available
                if (!play.alias.empty()) {
-                   playNames.push_back(play.name+"***"+play.alias);
+                   playNames.push_back(play.name+" *** "+play.alias);
                }
                else{
                     playNames.push_back(play.name);
@@ -296,7 +296,7 @@ int main()
                   print_theaters_of_play(theaters,cmd_vec.at(1));
                  }
              }
-            else if (cmd_vec.at(0)=="plays_in_theater"){
+            else if (cmd_vec.at(0)=="plays_in_theatre"){
                  size_t found = cmd.find("\"");
                  if (found != std::string::npos) {
                       vector<string> cmd_vec;
