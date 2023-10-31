@@ -100,7 +100,7 @@ bool read_data(map<string,Theater> &theaters){
                }
 
                if (hasEmptyString) {
-                   std::cout << "Error: empty field in line "<< to_string(count) << std::endl;
+                   std::cout << EMPTY_FIELD<< to_string(count) << std::endl;
                    return false;
                }
             string town = parts.at(0);
@@ -124,7 +124,7 @@ bool read_data(map<string,Theater> &theaters){
         file.close();
         }
     else{
-         cout<<"Error: input file cannot be opened"<<endl;
+         cout<< FILE_ERROR <<endl;
         return false;
     }
 
@@ -259,8 +259,7 @@ int main()
     bool check;
     check = read_data(theaters);
     if (!check){
-        return EXIT_SUCCESS;
-
+        return 0;
     }
     string cmd;
     while(true){
@@ -269,15 +268,15 @@ int main()
         if (cmd == "quit"){
               return EXIT_SUCCESS;
         }
-        if (cmd == "theatres"){
+        else if (cmd == "theatres"){
             print_theaters(theaters);
             continue;
         }
-        if (cmd == "plays"){
+        else if (cmd == "plays"){
             print_plays(theaters);
             continue;
         }
-         if (cmd.find(" ") != std::string::npos) {
+         else if (cmd.find(" ") != std::string::npos) {
 
               vector<string> cmd_vec = split(cmd,' ');
 
@@ -294,7 +293,7 @@ int main()
                   print_theaters_of_play(theaters,cmd_vec.at(1));
                  }
              }
-             if (cmd_vec.at(0)=="plays_in_theater"){
+            else if (cmd_vec.at(0)=="plays_in_theater"){
                  size_t found = cmd.find("\"");
                  if (found != std::string::npos) {
                       vector<string> cmd_vec;
@@ -308,7 +307,7 @@ int main()
                  }
 
              }
-             if (cmd_vec.at(0)=="plays_in_town"){
+            else if (cmd_vec.at(0)=="plays_in_town"){
                  size_t found = cmd.find("\"");
                  if (found != std::string::npos) {
                       vector<string> cmd_vec;
@@ -322,8 +321,14 @@ int main()
                  }
 
              }
+             else{
+                 cout<<COMMAND_NOT_FOUND<<endl;
+             }
 
          }
+        else{
+            cout<<COMMAND_NOT_FOUND<<endl;
+        }
     }
     return EXIT_SUCCESS;
 }
