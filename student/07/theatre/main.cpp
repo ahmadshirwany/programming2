@@ -81,14 +81,29 @@ bool hasAlias (string &play, string &alias){
 }
 bool read_data(map<string,Theater> &theaters){
     string fileName;
+    int count =0;
     cout <<"Input file: ";
     getline(cin, fileName);
     ifstream file(fileName);
     if(file){
         string line;
         while(getline(file,line)){
+            count++;
             vector<string> parts = split(line, ';');
-             string town = parts.at(0);
+            bool hasEmptyString = false;
+
+               for (const std::string& str : parts) {
+                   if (str.empty()) {
+                       hasEmptyString = true;
+                       break; // No need to continue checking once an empty string is found
+                   }
+               }
+
+               if (hasEmptyString) {
+                   std::cout << "Error: empty field in line "<< to_string(count) << std::endl;
+                   return false;
+               }
+            string town = parts.at(0);
             string theater = parts.at(1);
             string play = parts.at(2);
             string actor = parts.at(3);
@@ -109,6 +124,7 @@ bool read_data(map<string,Theater> &theaters){
         file.close();
         }
     else{
+         cout<<"Error: input file cannot be opened"<<endl;
         return false;
     }
 
@@ -243,7 +259,6 @@ int main()
     bool check;
     check = read_data(theaters);
     if (!check){
-        cout<<"Error: input file cannot be opened"<<endl;
         return EXIT_SUCCESS;
 
     }
@@ -254,7 +269,7 @@ int main()
         if (cmd == "quit"){
               return EXIT_SUCCESS;
         }
-        if (cmd == "theaters"){
+        if (cmd == "theatres"){
             print_theaters(theaters);
             continue;
         }
