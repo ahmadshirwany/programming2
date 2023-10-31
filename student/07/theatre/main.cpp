@@ -325,7 +325,7 @@ int main()
 
              }
              else{
-                 cout<<COMMAND_NOT_FOUND<<endl;
+                 cout<<WRONG_PARAMETERS<<endl;
              }
 
          }
