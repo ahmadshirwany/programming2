@@ -9,6 +9,25 @@ const int NUMBER_OF_FIELDS = 5;
 // Command prompt
 const string PROMPT = "the> ";
 
+// Define a structure for representing a Play
+struct Play;
+
+// Define a structure for representing a Theater
+struct Theater{
+    string city;
+    string name;
+    vector<Play> plays;
+};
+
+// Structure for representing a Play
+struct Play {
+    string name;
+    string alias;
+    bool has_alias = false; // Flag indicating if the play has an alias
+    string actor;
+    int seat;
+};
+
 // Error and other messages
 const string EMPTY_FIELD = "Error: empty field in line ";
 const string FILE_ERROR = "Error: input file cannot be opened";
