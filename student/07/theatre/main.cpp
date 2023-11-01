@@ -273,6 +273,31 @@ void print_players_in_play(map<string,Theater> const &theaters, const string pla
     }
 }
 
+// Function to print the names of actors in a specific play and theater
+void print_players_in_play(map<string,Theater> const &theaters, const string playname, string theaterName){
+    vector<string> actors_name;
+    auto theaterIter = theaters.find(theaterName);
+    if (theaterIter != theaters.end()) {
+        const Theater& theater = theaterIter->second;
+        for (const Play& play : theater.plays) {
+            if (play.name == playname || play.alias == playname) {
+                actors_name.push_back(play.actor);
+            }
+        }
+        if (actors_name.empty()) {
+            cout << PLAY_NOT_FOUND << endl;
+        }
+        else {
+            for (const string actor : actors_name){
+                cout << theaterName << " : " << actor << endl;
+            }
+        }
+    }
+    else{
+        cout << THEATRE_NOT_FOUND << endl;
+    }
+}
+
 // Main function
 int main(){
     map<string, Theater> theaters;
