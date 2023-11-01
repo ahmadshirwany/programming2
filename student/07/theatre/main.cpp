@@ -224,6 +224,7 @@ void print_plays_in_town(map<string,Theater> const &theaters, const string city)
         }
     }
     sort(theatersInCity.begin(), theatersInCity.end(), compareTheaterNames);
+    if(!theatersInCity.empty()){
     for (const Theater& theater : theatersInCity) {
         map<string, Play> playsWithFreeSeats;
         for (const Play& play : theater.plays) {
@@ -238,7 +239,7 @@ void print_plays_in_town(map<string,Theater> const &theaters, const string city)
         if (!sortedMap.empty()) {
             for (const auto& pair : sortedMap) {
                 if (pair.second.has_alias){
-                    cout << theater.name << " : " << pair.first << " -- " << pair.second.alias << " : " << pair.second.seat << endl;
+                    cout << theater.name << " : " << pair.first << " --- " << pair.second.alias << " : " << pair.second.seat << endl;
                 }
                 else{
                     cout << theater.name << " : " << pair.first << " : " << pair.second.seat << endl;
@@ -248,6 +249,10 @@ void print_plays_in_town(map<string,Theater> const &theaters, const string city)
         else{
             cout << NOT_AVAILABLE << endl;
         }
+    }
+    }
+    else{
+        cout<<"Error: unknown town"<<endl;
     }
 }
 // Function to print the names of actors in a specific play
