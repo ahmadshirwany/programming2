@@ -8,14 +8,10 @@ bool palindrome_recursive(std::string s)
 {
   RECURSIVE_FUNC
           int length = s.length();
-              // Base case: If the string has one character or is empty, it's a palindrome.
               if (length <= 1) {
                   return true;
               }
-
-              // Check if the first and last characters are the same.
               if (s[0] == s[length - 1]) {
-                  // Recursively check the substring without the first and last characters.
                   return palindrome_recursive(s.substr(1, length - 2));
               } else {
                   return false;
