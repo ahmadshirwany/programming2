@@ -152,10 +152,32 @@ void print_plays(map<string,Theater> const &theaters){
             }
         }
     }
+}
+// Function to print the names of theaters where a specific play is performed
+void print_theaters_of_play(map<string,Theater> const &theaters, const string playname){
+    vector<string> playNames;
+    for (const auto& theaterPair : theaters) {
+        const Theater& theater = theaterPair.second;
 
+        for (const Play& play : theater.plays) {
+            if (play.name == playname || play.alias == playname) {
+                playNames.push_back(theater.name);
+            }
+        }
+    }
+    sort(playNames.begin(), playNames.end());
+    set<string> uniquePlayNames(playNames.begin(), playNames.end());
+    if (uniquePlayNames.empty()) {
+        cout << PLAY_NOT_FOUND << endl;
+    }
+    else{
+        for (const string& playName : uniquePlayNames) {
+            cout << playName << endl;
+        }
+    }
+}
 // Main function
-int main()
-{
+int main(){
     map<string, Theater> theaters;
     bool check;
     check = read_data(theaters);
