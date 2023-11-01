@@ -243,6 +243,35 @@ void print_plays_in_town(map<string,Theater> const &theaters, const string city)
         }
     }
 }
+// Function to print the names of actors in a specific play
+void print_players_in_play(map<string,Theater> const &theaters, const string playname){
+    map<string, string> actors_name;
+    for (const auto& theaterPair : theaters) {
+        const Theater& theater = theaterPair.second;
+        for (const Play& play : theater.plays) {
+            if (play.name == playname || play.alias == playname) {
+                actors_name[play.actor] =  theaterPair.first;
+            }
+        }
+    }
+    if (actors_name.empty()){
+        cout << PLAY_NOT_FOUND << endl;
+    }
+    else{
+        vector<pair<string, string>> vec(actors_name.begin(), actors_name.end());
+
+        // Sort the vector by the second string (value)
+        sort(vec.begin(), vec.end(), [](const auto& a, const auto& b) {
+            return a.second < b.second;
+        });
+
+        // If you want to construct a sorted map from the sorted vector:
+        map<string, string> sorted_map(vec.begin(), vec.end());
+        for (const auto& actorPair : vec) {
+            cout << actorPair.second << " : " << actorPair.first << endl;
+        }
+    }
+}
 
 // Main function
 int main(){
