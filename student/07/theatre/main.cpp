@@ -176,6 +176,27 @@ void print_theaters_of_play(map<string,Theater> const &theaters, const string pl
         }
     }
 }
+// Function to print the names of all plays in a specific theater
+void print_plays_in_theater(map<string,Theater> const &theaters, const string theatername){
+    vector<string> playNames;
+    auto theaterIter = theaters.find(theatername);
+    if (theaterIter != theaters.end()) {
+        const Theater& theater = theaterIter->second;
+        for (const Play& play : theater.plays) {
+            playNames.push_back(play.name);
+        }
+    }
+    sort(playNames.begin(), playNames.end());
+    set<string> uniquePlayNames(playNames.begin(), playNames.end());
+    if (uniquePlayNames.empty()) {
+        cout << THEATRE_NOT_FOUND << endl;
+    }
+    else{
+        for (const string& playName : uniquePlayNames) {
+            cout << playName << endl;
+        }
+    }
+}
 // Main function
 int main(){
     map<string, Theater> theaters;
