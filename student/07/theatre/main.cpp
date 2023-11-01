@@ -130,6 +130,12 @@ bool read_data(map<string,Theater> &theaters){
 
     return true;
 }
+// Function to print the names of all theaters
+void print_theaters(map<string,Theater> const &theaters){
+    for (pair<string, Theater> const &t : theaters){
+        cout << t.first << endl;
+    }
+}
 
 // Main function
 int main()
