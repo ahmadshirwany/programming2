@@ -66,6 +66,70 @@ vector<string> split(const string& str, char delim)
     }
     return result;
 }
+// Function to check if a Play has an alias and extracts it
+bool hasAlias(string &play, string &alias){
+    vector<string> parts = split(play, '/');
+    if (parts.size() == 2){
+        play = parts.at(0);
+        alias = parts.at(1);
+        return true;
+    }
+    return false;
+}
+
+// Function to read data from an input file and populate the 'theaters' map
+bool read_data(map<string,Theater> &theaters){
+    string fileName;
+    int count = 0;
+    cout << "Input file: ";
+    getline(cin, fileName);
+    ifstream file(fileName);
+    if(file){
+        string line;
+        while(getline(file, line)){
+            count++;
+            vector<string> parts = split(line, ';');
+            bool hasEmptyString = false;
+
+            for (const string& str : parts) {
+                if (str.empty()) {
+                    hasEmptyString = true;
+                    break; // No need to continue checking once an empty string is found
+                }
+            }
+            if (parts.size() < NUMBER_OF_FIELDS){
+                hasEmptyString = true;
+            }
+
+            if (hasEmptyString) {
+                cout << EMPTY_FIELD << to_string(count) << endl;
+                return false;
+            }
+            string town = parts.at(0);
+            string theater = parts.at(1);
+            string play = parts.at(2);
+            string actor = parts.at(3);
+            string seats = parts.at(4);
+            if (theaters.find(theater) == theaters.end()){
+                Theater t = Theater{town, theater, {}};
+                theaters.insert({theater, t});
+            }
+            Play p = Play();
+            p.name = play;
+            p.has_alias = hasAlias(p.name, p.alias);
+            p.actor = actor;
+            p.seat =  ("none" == seats) ? 0 : stoi(seats);
+            theaters.at(theater).plays.push_back(p);
+        }
+        file.close();
+    }
+    else{
+        cout << FILE_ERROR << endl;
+        return false;
+    }
+
+    return true;
+}
 
 // Main function
 int main()
