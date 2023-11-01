@@ -136,6 +136,22 @@ void print_theaters(map<string,Theater> const &theaters){
         cout << t.first << endl;
     }
 }
+// Function to print the names of all plays
+void print_plays(map<string,Theater> const &theaters){
+    vector<string> playNames;
+    for (const auto& theaterPair : theaters) {
+        const Theater& theater = theaterPair.second;
+
+        for (const Play& play : theater.plays) {
+            // Print alias with " *** " separator if available
+            if (!play.alias.empty()) {
+                playNames.push_back(play.name + " *** " + play.alias);
+            }
+            else{
+                playNames.push_back(play.name);
+            }
+        }
+    }
 
 // Main function
 int main()
