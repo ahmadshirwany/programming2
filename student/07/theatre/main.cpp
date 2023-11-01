@@ -291,6 +291,7 @@ void print_players_in_play(map<string,Theater> const &theaters, const string pla
                 actors_name.push_back(play.actor);
             }
         }
+        sort(actors_name.begin(), actors_name.end());
         if (actors_name.empty()) {
             cout << PLAY_NOT_FOUND << endl;
         }
