@@ -1,5 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <map>
+#include <fstream>
+#include <algorithm>
+#include <set>
 
 using namespace std;
 
@@ -65,5 +70,90 @@ vector<string> split(const string& str, char delim)
 // Main function
 int main()
 {
+    map<string, Theater> theaters;
+    bool check;
+    check = read_data(theaters);
+    if (!check){
+        return EXIT_FAILURE;
+    }
+    string cmd;
+    while(true){
+        cout << PROMPT;
+        getline(cin, cmd);
+        if (cmd == "quit"){
+              return EXIT_SUCCESS;
+        }
+        else if (cmd == "theatres"){
+            print_theaters(theaters);
+            continue;
+        }
+        else if (cmd == "plays"){
+            print_plays(theaters);
+            continue;
+        }
+        else if (cmd.find(" ") != std::string::npos) {
+            vector<string> cmd_vec = split(cmd, ' ');
+
+            if (cmd_vec.at(0) == "theatres_of_play"){
+                size_t found = cmd.find("\"");
+                if (found != std::string::npos) {
+                    vector<string> cmd_vec;
+                    size_t firstDoubleQuote = cmd.find("\"");
+                    size_t secondDoubleQuote = cmd.find("\"", firstDoubleQuote + 1);
+                    string extractedSubstring = cmd.substr(firstDoubleQuote + 1, secondDoubleQuote - firstDoubleQuote - 1);
+                    print_theaters_of_play(theaters, extractedSubstring);
+                }
+                else{
+                    print_theaters_of_play(theaters, cmd_vec.at(1));
+                }
+            }
+            else if (cmd_vec.at(0) == "plays_in_theatre"){
+                size_t found = cmd.find("\"");
+                if (found != std::string::npos) {
+                    vector<string> cmd_vec;
+                    size_t firstDoubleQuote = cmd.find("\"");
+                    size_t secondDoubleQuote = cmd.find("\"", firstDoubleQuote + 1);
+                    string extractedSubstring = cmd.substr(firstDoubleQuote + 1, secondDoubleQuote - firstDoubleQuote - 1);
+                    print_plays_in_theater(theaters, extractedSubstring);
+                }
+                else{
+                    print_plays_in_theater(theaters, cmd_vec.at(1));
+                }
+            }
+            else if (cmd_vec.at(0) == "plays_in_town"){
+                size_t found = cmd.find("\"");
+                if (found != std::string::npos) {
+                    vector<string> cmd_vec;
+                    size_t firstDoubleQuote = cmd.find("\"");
+                    size_t secondDoubleQuote = cmd.find("\"", firstDoubleQuote + 1);
+                    string extractedSubstring = cmd.substr(firstDoubleQuote + 1, secondDoubleQuote - firstDoubleQuote - 1);
+                    print_plays_in_town(theaters, extractedSubstring);
+                }
+                else{
+                    print_plays_in_town(theaters, cmd_vec.at(1));
+                }
+            }
+            else if (cmd_vec.at(0) == "players_in_play"){
+                if (cmd_vec.size() > 2){
+                    size_t firstDoubleQuote = cmd.find("\"");
+                    size_t secondDoubleQuote = cmd.find("\"", firstDoubleQuote + 1);
+                    string extractedSubstring = cmd.substr(firstDoubleQuote + 1, secondDoubleQuote - firstDoubleQuote - 1);
+                    print_players_in_play(theaters, cmd_vec.at(1), extractedSubstring);
+                }
+                else{
+                    print_players_in_play(theaters, cmd_vec.at(1));
+                }
+            }
+            else if (cmd_vec.at(0) == "plays"){
+                cout << WRONG_PARAMETERS << endl;
+            }
+            else{
+                cout << COMMAND_NOT_FOUND << endl;
+            }
+        }
+        else{
+            cout << COMMAND_NOT_FOUND << endl;
+        }
+    }
     return EXIT_SUCCESS;
 }
