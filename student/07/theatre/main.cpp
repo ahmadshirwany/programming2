@@ -197,6 +197,53 @@ void print_plays_in_theater(map<string,Theater> const &theaters, const string th
         }
     }
 }
+// Function to compare Theater names for sorting
+bool compareTheaterNames(const Theater& theater1, const Theater& theater2) {
+    return theater1.name < theater2.name;
+}
+
+// Function to compare Play names for sorting
+bool comparePlayNames(const Play& play1, const Play& play2) {
+    return play1.name < play2.name;
+}
+
+// Function to print the names of all plays in a specific town
+void print_plays_in_town(map<string,Theater> const &theaters, const string city){
+    vector<Theater> theatersInCity;
+    for (const auto& theaterPair : theaters) {
+        const Theater& theater = theaterPair.second;
+        if (theater.city == city) {
+            theatersInCity.push_back(theater);
+        }
+    }
+    sort(theatersInCity.begin(), theatersInCity.end(), compareTheaterNames);
+    for (const Theater& theater : theatersInCity) {
+        map<string, Play> playsWithFreeSeats;
+        for (const Play& play : theater.plays) {
+            if (play.seat > 0) {
+                playsWithFreeSeats[play.name] = play;
+            }
+            else {
+                playsWithFreeSeats.erase(play.name);
+            }
+        }
+        map<string, Play> sortedMap(playsWithFreeSeats.begin(), playsWithFreeSeats.end());
+        if (!sortedMap.empty()) {
+            for (const auto& pair : sortedMap) {
+                if (pair.second.has_alias){
+                    cout << theater.name << " : " << pair.first << " -- " << pair.second.alias << " : " << pair.second.seat << endl;
+                }
+                else{
+                    cout << theater.name << " : " << pair.first << " : " << pair.second.seat << endl;
+                }
+            }
+        }
+        else{
+            cout << NOT_AVAILABLE << endl;
+        }
+    }
+}
+
 // Main function
 int main(){
     map<string, Theater> theaters;
