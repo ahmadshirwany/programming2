@@ -152,6 +152,7 @@ int main() {
                     std::cout<<"Enter a new phone number: ";
                     std::string new_number;
                     getline(std::cin,new_number);
+                    std::cout << std::endl;
                     std::regex pattern("^[0-9 ]+$");
                      if (std::regex_match(new_number, pattern)) {
                     student->phone_number = new_number;
