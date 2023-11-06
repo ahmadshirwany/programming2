@@ -159,6 +159,7 @@ int main() {
                      }
                      else {
                             std::cout << "Erroneous phone number: " << new_number << std::endl;
+                            std::cout << std::endl;
                         }
             }
                         else {
