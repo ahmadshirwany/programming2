@@ -37,6 +37,25 @@ std::vector<std::string> split(const std::string& s,
     }
     return result;
 }
+void save_data(const std::string& file_name, const std::map<std::string, Student*>& student_numbers) {
+    std::ofstream file_object(file_name);
+    if (!file_object) {
+        std::cout << "Error in opening the file for writing!" << std::endl;
+        return;
+    }
+
+    for (const auto& pair : student_numbers) {
+        const Student* student = pair.second;
+        file_object << student->student_number << ';'
+                    << student->user_id << ';'
+                    << student->name << ';'
+                    << student->phone_number << ';'
+                    << student->email << ';'
+                    << student->skype << '\n';
+    }
+
+    file_object.close();
+}
 
 
 bool read_data(const std::string& file_name,
@@ -156,6 +175,7 @@ int main() {
                     std::regex pattern("^[0-9 ]+$");
                      if (std::regex_match(new_number, pattern)) {
                     student->phone_number = new_number;
+                    save_data(file_name, student_numbers);
                      }
                      else {
                             std::cout << "Erroneous phone number: " << new_number << std::endl;
