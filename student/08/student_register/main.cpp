@@ -44,8 +44,19 @@ void save_data(const std::string& file_name, const std::map<std::string, Student
         return;
     }
 
+    // Create a temporary vector to store the sorted data
+    std::vector<const Student*> sorted_students;
     for (const auto& pair : student_numbers) {
-        const Student* student = pair.second;
+        sorted_students.push_back(pair.second);
+    }
+
+    // Sort the data by user_id
+    std::sort(sorted_students.begin(), sorted_students.end(), [](const Student* a, const Student* b) {
+        return a->user_id < b->user_id;
+    });
+
+    // Write the sorted data to the file
+    for (const Student* student : sorted_students) {
         file_object << student->student_number << ';'
                     << student->user_id << ';'
                     << student->name << ';'
@@ -56,7 +67,6 @@ void save_data(const std::string& file_name, const std::map<std::string, Student
 
     file_object.close();
 }
-
 
 bool read_data(const std::string& file_name,
                std::map< std::string, Student* >& alphabetical_order,
