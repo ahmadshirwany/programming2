@@ -45,21 +45,19 @@ bool Cards::remove(int& id) {
 // Moves the last element of the data structure as the first one.
 // Returns false if the data structure is empty, otherwise returns true.
 bool Cards::bottom_to_top() {
-    if (top_ == nullptr) {
-        return false; // Empty deck
+    if (top_ == nullptr || top_->next == nullptr) {
+        return false; // Empty deck or only one card
     }
 
     Card_data* current = top_;
-    Card_data* prev = nullptr;
-
-    while (current->next != nullptr) {
-        prev = current;
+    while (current->next->next != nullptr) {
         current = current->next;
     }
 
-    current->next = top_;
-    top_ = current;
-    prev->next = nullptr;
+    Card_data* first = top_;
+    top_ = top_->next;
+    current->next->next = first;
+    first->next = nullptr;
 
     return true;
 }
