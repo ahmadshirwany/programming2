@@ -45,10 +45,8 @@ void Queue::switch_light() {
             cout <<  temp->reg_num<<" ";
             delete temp;
             vehicles_to_release--;
-        }
-        if (vehicles_to_release == 0){
+        }   
              is_green_ = !is_green_;
-        }
         cout <<"can go on" << endl;
         }
 
