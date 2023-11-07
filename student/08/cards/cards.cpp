@@ -86,6 +86,10 @@ bool Cards::top_to_bottom() {
 }
 
 // Helper function for recursive printing from bottom to top.
+void Cards::print_from_bottom_to_top(std::ostream& s) {
+    recursive_print(top_, s);
+}
+
 int Cards::recursive_print(Card_data* top, std::ostream& s) {
     if (top == nullptr) {
         return 0;
@@ -94,11 +98,6 @@ int Cards::recursive_print(Card_data* top, std::ostream& s) {
         s << "Card " << count + 1 << ": " << top->data << std::endl;
         return count + 1;
     }
-}
-
-// Prints the content of the data structure from bottom to top using recursive_print.
-void Cards::print_from_bottom_to_top(std::ostream& s) {
-    recursive_print(top_, s);
 }
 
 // Destructor deallocates memory when the data structure is no longer needed.
