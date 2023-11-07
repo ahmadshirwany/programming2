@@ -46,6 +46,9 @@ void Queue::switch_light() {
             delete temp;
             vehicles_to_release--;
         }
+        if (vehicles_to_release == 0){
+             is_green_ = !is_green_;
+        }
         cout <<" can go on" << endl;
         }
 
@@ -59,7 +62,7 @@ void Queue::reset_cycle(unsigned int cycle) {
 }
 
 void Queue::print() const {
-    cout << (is_green_ ? "GREEN" : "RED") << ": Vehicle(s) ";
+    cout <<  "RED" << ": Vehicle(s) ";
     if (first_ != nullptr) {
         Vehicle* current = first_;
         while (current != nullptr) {
