@@ -49,7 +49,7 @@ void Queue::switch_light() {
         if (vehicles_to_release == 0){
              is_green_ = !is_green_;
         }
-        cout <<" can go on" << endl;
+        cout <<"can go on" << endl;
         }
 
     } else {
@@ -62,8 +62,9 @@ void Queue::reset_cycle(unsigned int cycle) {
 }
 
 void Queue::print() const {
-    cout <<  "RED" << ": Vehicle(s) ";
+
     if (first_ != nullptr) {
+        cout <<  "RED" << ": Vehicle(s) ";
         Vehicle* current = first_;
         while (current != nullptr) {
             cout << current->reg_num;
@@ -74,6 +75,6 @@ void Queue::print() const {
         }
         cout << " waiting in traffic lights" << endl;
     } else {
-        cout << "No vehicles waiting in traffic lights" << endl;
+        cout << "RED: No vehicles waiting in traffic lights" << endl;
     }
 }
