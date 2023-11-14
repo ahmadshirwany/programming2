@@ -101,7 +101,7 @@ int main() {
                            double operand1, operand2;
                            if (string_to_double(pieces.at(1), operand1) && string_to_double(pieces.at(2), operand2)) {
                                double result = it->action(operand1, operand2);
-                               cout << "Result: " << result << endl;
+                               cout <<  result << endl;
                            } else {
                                cout << "Error: a non-number operand." << endl;
                            }
