@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-
+#include <cmath>
 using namespace std;
 
 const string GREETING_AT_END = "Thanks and see you later!";
@@ -55,6 +55,9 @@ const vector<Command> COMMANDS = {
     {"DECREASE", 2, false, subtraction},
     {"MULTIPLY", 2, false, multiplication},
     {"DIVIDE", 2, false, division},
+    {"^", 2, false, pow}, // Add the "^" command for exponentiation
+    {"POWER", 2, false, pow},
+     {"EXP", 2, false, pow},
     {"STOP", 0, true, nullptr},
     {"QUIT", 0, true, nullptr},
     {"EXIT", 0, true, nullptr},
