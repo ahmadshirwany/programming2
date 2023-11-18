@@ -158,8 +158,25 @@ void Company::close_project(Params params)
 
 void Company::print_projects(Params)
 {
+    if (projects_.empty()) {
+           std::cout << "None" << std::endl;
+           return;
+       }
 
-}
+       for (const auto& project_entry : projects_) {
+           const Project* project = project_entry.second;
+           std::cout<<project->get_id()<<" : ";
+           project->print_start();
+           std::cout<<" - ";
+           if(project->is_closed()){
+            project->print_end();
+           }
+           std::cout<<std::endl;
+
+           }
+                  }
+
+
 
 void Company::add_requirement(Params params)
 {
