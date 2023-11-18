@@ -84,6 +84,14 @@ void Date::print() const
     std::cout << year_;
 }
 
+bool Date::check() const
+{
+    if ((day_ ==0)&&(month_ == 0)){
+        return false;
+    }
+    return true;
+}
+
 bool Date::operator==(const Date &rhs) const
 {
     return day_ == rhs.day_ and month_ == rhs.month_ and year_ == rhs.year_ ;

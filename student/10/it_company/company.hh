@@ -88,7 +88,7 @@ public:
      * @param params, an empty vector of strings
      * Prints the current staff in the company
      */
-    void print_current_staff(Params);
+     void print_current_staff(Params);
 
     /**
      * @brief create_project

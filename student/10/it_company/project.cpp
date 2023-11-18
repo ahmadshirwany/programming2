@@ -16,3 +16,26 @@ Project::~Project()
     //std::cout << "Project " << id_ << " destructed." << std::endl;
 }
 
+std::string Project::get_id() const
+{
+    return id_ ;
+}
+
+void Project::print_start() const
+{
+    start_.print();
+}
+
+bool Project::check_end() const
+{
+    return end_.check();
+}
+
+
+
+void Project::print_end() const
+{
+    end_.print();
+}
+
+

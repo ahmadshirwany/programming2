@@ -69,6 +69,7 @@ public:
      * @brief print as dd.mm.yyyy
      */
     void print() const;
+    bool check() const;
 
     /**
      * @brief comparison operators

@@ -39,6 +39,12 @@ public:
     ~Project();
 
     // More public methods
+    std::string get_id() const;
+    void print_start() const;
+    bool check_end() const;
+    void print_end() const;
+
+
 
 private:
     /**

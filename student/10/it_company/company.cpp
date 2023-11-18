@@ -124,7 +124,14 @@ void Company::print_current_staff(Params)
 
 void Company::create_project(Params params)
 {
-    Project *p =  new Project(params.at(0));
+    std::string id = params.at(0);
+        if (projects_.find(id)!= projects_.end()){
+            std::cout<<ALREADY_EXISTS<<std::endl;
+            return;
+
+        }
+        Project *p =  new Project(params.at(0),Utils::today);
+        projects_.insert({id,p});
 }
 
 void Company::close_project(Params params)
@@ -148,7 +155,21 @@ void Company::assign(Params params)
 }
 
 void Company::print_project_info(Params params)
-{
+{   std::string id = params.at(0);
+    if (projects_.find(id)!= projects_.end()){
+    Project *p = projects_.at(params.at(0));
+    std::cout<<p->get_id()<<" : ";
+    p->print_start();
+    std::cout<<" - ";
+    if(p->check_end()){
+     p->print_end();
+    }
+    std::cout<<std::endl;
+
+    }
+    else{
+        std::cout<<CANT_FIND<<id<<std::endl;
+    }
 
 }
 
