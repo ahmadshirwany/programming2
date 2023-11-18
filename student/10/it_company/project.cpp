@@ -43,4 +43,9 @@ void Project::print_end() const
     end_.print();
 }
 
+void Project::add_requirement(std::string requirment)
+{
+    requirements_.insert(requirment);
+}
+
 

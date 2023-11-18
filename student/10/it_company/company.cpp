@@ -180,6 +180,25 @@ void Company::print_projects(Params)
 
 void Company::add_requirement(Params params)
 {
+    std::string project_id = params.at(0);
+       std::string requirement = params.at(1);
+
+       // Check if the project exists
+       auto project_iter = projects_.find(project_id);
+       if (project_iter == projects_.end()) {
+               std::cout << CANT_FIND << project_id << std::endl;
+               return;
+           }
+
+           // Check if the project is closed
+           if (project_iter->second->is_closed()) {
+               std::cout << CANT_FIND << project_id << std::endl;
+               return;
+           }
+
+           // Add the requirement to the project
+           project_iter->second->add_requirement(requirement);
+           std::cout << "Requirement added for: " << project_id << std::endl;
 
 }
 

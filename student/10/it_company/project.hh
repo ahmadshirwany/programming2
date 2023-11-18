@@ -44,6 +44,8 @@ public:
     void close( Date today);
     bool is_closed() const;
     void print_end() const;
+    void add_requirement(std::string requirment);
+
 
 
 
@@ -57,6 +59,8 @@ private:
     Date end_;
 
     // More attributes and private methods
+    std::set<std::string> requirements_;
+
 };
 
 #endif // PROJECT_HH
