@@ -26,7 +26,12 @@ void Project::print_start() const
     start_.print();
 }
 
-bool Project::check_end() const
+void Project::close(Date today)
+{
+    end_ = today;
+}
+
+bool Project::is_closed() const
 {
     return end_.check();
 }

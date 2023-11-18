@@ -41,8 +41,10 @@ public:
     // More public methods
     std::string get_id() const;
     void print_start() const;
-    bool check_end() const;
+    void close( Date today);
+    bool is_closed() const;
     void print_end() const;
+
 
 
 

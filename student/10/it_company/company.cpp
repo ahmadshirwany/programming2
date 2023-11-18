@@ -135,7 +135,24 @@ void Company::create_project(Params params)
 }
 
 void Company::close_project(Params params)
-{
+{ std::string project_id = params.at(0);
+
+    // Check if the project exists
+    auto project_iter = projects_.find(project_id);
+    if (project_iter == projects_.end()) {
+        std::cout << CANT_FIND << project_id << std::endl;
+        return;
+    }
+
+    // Check if the project is already closed
+    if (project_iter->second->is_closed()) {
+        std::cout << "Project closed." << std::endl;
+        return;
+    }
+
+    // Close the project and set the end date to the current date
+    project_iter->second->close(Utils::today);
+    std::cout << "Project closed." << std::endl;
 
 }
 
@@ -161,7 +178,7 @@ void Company::print_project_info(Params params)
     std::cout<<p->get_id()<<" : ";
     p->print_start();
     std::cout<<" - ";
-    if(p->check_end()){
+    if(p->is_closed()){
      p->print_end();
     }
     std::cout<<std::endl;
