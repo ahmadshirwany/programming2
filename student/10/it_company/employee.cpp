@@ -27,6 +27,19 @@ std::string Employee::get_id() const
     return id_;
 }
 
+std::set<std::string> Employee::get_skills() const
+{
+
+    std::set<std::string> skills_vector;
+
+    for (const std::string &skill : skills_)
+    {
+        skills_vector.insert(skill);
+    }
+
+    return skills_vector;
+}
+
 void Employee::add_skill(const std::string& skill)
 {
     skills_.insert(skill);

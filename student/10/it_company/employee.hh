@@ -12,6 +12,7 @@
 #include "date.hh"
 #include <string>
 #include <set>
+#include <vector>
 
 class Employee
 {
@@ -44,6 +45,7 @@ public:
      * @return employee's id
      */
     std::string get_id() const;
+    std::set<std::string> get_skills() const;
 
     /**
      * @brief add_skill

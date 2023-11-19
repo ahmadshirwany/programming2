@@ -13,6 +13,7 @@
 #include "date.hh"
 #include "utils.hh"
 #include <string>
+#include <map>
 
 const std::string NOT_QUALIFIED = "Not qualified any more: ";
 
@@ -44,8 +45,10 @@ public:
     void close( Date today);
     bool is_closed() const;
     void print_end() const;
-    void add_requirement(std::string requirment);
-
+    void add_requirement(const std::string& requirment);
+    bool check_requirements(const std::set<std::string>& employee_skills);
+    void assign_employee(const Employee& employee);
+    void remove_employee(const std::string& employee_id);
 
 
 
@@ -60,6 +63,8 @@ private:
 
     // More attributes and private methods
     std::set<std::string> requirements_;
+    std::map<std::string, Employee> assigned_employees_;
+
 
 };
 

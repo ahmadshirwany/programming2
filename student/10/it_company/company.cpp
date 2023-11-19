@@ -146,13 +146,13 @@ void Company::close_project(Params params)
 
     // Check if the project is already closed
     if (project_iter->second->is_closed()) {
-        std::cout << "Project closed." << std::endl;
+        std::cout << PROJECT_CLOSED << std::endl;
         return;
     }
 
     // Close the project and set the end date to the current date
     project_iter->second->close(Utils::today);
-    std::cout << "Project closed." << std::endl;
+    std::cout << PROJECT_CLOSED << std::endl;
 
 }
 
@@ -198,31 +198,12 @@ void Company::add_requirement(Params params)
 
            // Add the requirement to the project
            project_iter->second->add_requirement(requirement);
-           std::cout << "Requirement added for: " << project_id << std::endl;
+           std::cout << REQUIREMENT_ADDED << project_id << std::endl;
 
 }
 
 void Company::assign(Params params)
 {
-
-}
-
-void Company::print_project_info(Params params)
-{   std::string id = params.at(0);
-    if (projects_.find(id)!= projects_.end()){
-    Project *p = projects_.at(params.at(0));
-    std::cout<<p->get_id()<<" : ";
-    p->print_start();
-    std::cout<<" - ";
-    if(p->is_closed()){
-     p->print_end();
-    }
-    std::cout<<std::endl;
-
-    }
-    else{
-        std::cout<<CANT_FIND<<id<<std::endl;
-    }
 
 }
 
