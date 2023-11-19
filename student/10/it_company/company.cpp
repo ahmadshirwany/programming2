@@ -204,6 +204,54 @@ void Company::add_requirement(Params params)
 
 void Company::assign(Params params)
 {
+    std::string employee_id = params.at(0);
+    std::string project_id = params.at(1);
+    auto employee_iter = current_staff_.find(employee_id);
+
+    if (employee_iter == current_staff_.end()) {
+        std::cout << CANT_FIND<< employee_id << std::endl;
+        return;
+    }
+
+    // Check if the project exists
+    auto project_iter = projects_.find(project_id);
+    if (project_iter == projects_.end()) {
+        std::cout << CANT_FIND << project_id << std::endl;
+        return;
+    }
+
+    // Check if the project is closed
+    if (project_iter->second->is_closed()) {
+        std::cout << CANT_ASSIGN << employee_iter->second->get_id() << std::endl;
+        return;
+    }
+
+    // Check if the employee has the required skills for the project
+    if (project_iter->second->check_requirements(employee_iter->second->get_skills())) {
+        // Assign the employee to the project
+        project_iter->second->assign_employee(*(employee_iter->second));
+        std::cout << STAFF_ASSIGNED << project_id << std::endl;
+    } else {
+        std::cout << CANT_ASSIGN << employee_id << std::endl;
+    }
+}
+
+void Company::print_project_info(Params params)
+{   std::string id = params.at(0);
+    if (projects_.find(id)!= projects_.end()){
+    Project *p = projects_.at(params.at(0));
+    std::cout<<p->get_id()<<" : ";
+    p->print_start();
+    std::cout<<" - ";
+    if(p->is_closed()){
+     p->print_end();
+    }
+    std::cout<<std::endl;
+
+    }
+    else{
+        std::cout<<CANT_FIND<<id<<std::endl;
+    }
 
 }
 
