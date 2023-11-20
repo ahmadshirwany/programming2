@@ -16,10 +16,6 @@ Company::~Company()
        {
            delete entry.second;
        }
-    for (auto& entry : current_staff_)
-       {
-           delete entry.second;
-       }
 
 
        // Delete all projects in projects_
