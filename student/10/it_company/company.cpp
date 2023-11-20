@@ -250,13 +250,13 @@ void Company::print_project_info(Params params)
     }
     std::cout<<std::endl;
     std::set<std::string> requirements = p->get_requirements();
-    std::cout << "** Requirements: ";
+    std::cout << "** Requirements:";
     if (requirements.empty()) {
         std::cout << "None";
     } else {
         auto iter = requirements.begin();
         while (iter != requirements.end()) {
-            std::cout << *iter;
+            std::cout <<" "<< *iter;
             ++iter;
             if (iter != requirements.end()) {
                 std::cout << ",";
@@ -293,8 +293,8 @@ void Company::print_employee_info(Params params)
     std::string employee_id = params.at(0);
 
         // Check if the employee exists
-        auto employee_iter = all_staff_.find(employee_id);
-        if (employee_iter == all_staff_.end()) {
+        auto employee_iter = current_staff_.find(employee_id);
+        if (employee_iter == current_staff_.end()) {
             std::cout << CANT_FIND << employee_id << std::endl;
             return;
         }
@@ -305,7 +305,12 @@ void Company::print_employee_info(Params params)
         for(auto p : projects_){
              std::set<std::string> employes =  p.second->get_employes();
 
-        } std::cout << "Projects:" << std::endl;
+        } std::cout << "Projects:" ;
+        if (projects_.empty()){
+            std::cout<<" None"<< std::endl;
+        }
+        else{
+          std::cout<< std::endl;
         for (const auto& project_pair : projects_) {
             const Project* p = project_pair.second;
 
@@ -319,6 +324,7 @@ void Company::print_employee_info(Params params)
                 }
                 std::cout << std::endl;
       }
+        }
         }
 }
 
