@@ -228,7 +228,7 @@ void Company::assign(Params params)
     }
 
     // Check if the employee has the required skills for the project
-    if (project_iter->second->check_requirements(employee_iter->second->get_skills())) {
+    if ((project_iter->second->check_requirements(employee_iter->second->get_skills()))&& !(project_iter->second->has_employee(employee_id))  ) {
         // Assign the employee to the project
         project_iter->second->assign_employee(*(employee_iter->second));
         active_staff_.insert(employee_id);
