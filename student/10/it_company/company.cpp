@@ -323,8 +323,14 @@ void Company::print_employee_info(Params params)
 
 void Company::print_active_staff(Params)
 {
+    if(active_staff_.empty()){
+        std::cout << "None"<< std::endl;
+    }
+    else{
     // Iterate through the map of active staff
     for (const auto& staff : active_staff_) {
         std::cout << staff << std::endl;
+
+    }
     }
 }
