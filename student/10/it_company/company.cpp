@@ -247,6 +247,37 @@ void Company::print_project_info(Params params)
      p->print_end();
     }
     std::cout<<std::endl;
+    std::set<std::string> requirements = p->get_requirements();
+    std::cout << "** Requirements: ";
+    if (requirements.empty()) {
+        std::cout << "None";
+    } else {
+        auto iter = requirements.begin();
+        while (iter != requirements.end()) {
+            std::cout << *iter;
+            ++iter;
+            if (iter != requirements.end()) {
+                std::cout << ",";
+            }
+        }
+    }
+    std::cout << std::endl;
+    std::set<std::string> employess = p->get_employes();
+    std::cout << "** Staff: ";
+    if (employess.empty()) {
+        std::cout << "None";
+    } else {
+        auto iter = employess.begin();
+        while (iter != employess.end()) {
+            std::cout << *iter;
+            ++iter;
+            if (iter != employess.end()) {
+                std::cout << ",";
+            }
+        }
+    }
+    std::cout << std::endl;
+
 
     }
     else{

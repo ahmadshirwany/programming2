@@ -102,4 +102,21 @@ void Project::remove_employee(const std::string &employee_id)
     assigned_employees_.erase(employee_id);
 }
 
+std::set<std::string> Project::get_requirements()
+{
+    return requirements_;
+}
+
+std::set<std::string> Project::get_employes()
+{
+    std::set<std::string> employees;
+
+    // Iterate over the map and insert keys into the set
+    for (const auto& pair : assigned_employees_) {
+        employees.insert(pair.first);
+    }
+
+    return employees;
+}
+
 

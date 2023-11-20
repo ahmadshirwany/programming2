@@ -49,6 +49,8 @@ public:
     bool check_requirements(const std::set<std::string>& employee_skills);
     void assign_employee(const Employee& employee);
     void remove_employee(const std::string& employee_id);
+     std::set<std::string> get_requirements();
+     std::set<std::string> get_employes();
 
 
 
