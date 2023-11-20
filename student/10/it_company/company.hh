@@ -162,6 +162,7 @@ private:
     std::map<std::string, Employee*> all_staff_;
 
     // More attributes and private methods
+     std::set<std::string> active_staff_;
      std::map<std::string, Project*> projects_;
      Date current_date = Date();
 };

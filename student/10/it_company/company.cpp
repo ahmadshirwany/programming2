@@ -230,6 +230,7 @@ void Company::assign(Params params)
     if (project_iter->second->check_requirements(employee_iter->second->get_skills())) {
         // Assign the employee to the project
         project_iter->second->assign_employee(*(employee_iter->second));
+        active_staff_.insert(employee_id);
         std::cout << STAFF_ASSIGNED << project_id << std::endl;
     } else {
         std::cout << CANT_ASSIGN << employee_id << std::endl;
@@ -322,5 +323,8 @@ void Company::print_employee_info(Params params)
 
 void Company::print_active_staff(Params)
 {
-
+    // Iterate through the map of active staff
+    for (const auto& staff : active_staff_) {
+        std::cout << staff << std::endl;
+    }
 }
