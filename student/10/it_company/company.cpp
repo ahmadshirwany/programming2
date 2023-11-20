@@ -126,7 +126,7 @@ void Company::create_project(Params params)
 {
     std::string id = params.at(0);
         if (projects_.find(id)!= projects_.end()){
-            std::cout<<ALREADY_EXISTS<<std::endl;
+            std::cout<<ALREADY_EXISTS<<id<<std::endl;
             return;
 
         }
