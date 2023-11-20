@@ -132,6 +132,7 @@ void Company::create_project(Params params)
         }
         Project *p =  new Project(params.at(0),Utils::today);
         projects_.insert({id,p});
+        std::cout<< PROJECT_CREATED <<std::endl;
 }
 
 void Company::close_project(Params params)
