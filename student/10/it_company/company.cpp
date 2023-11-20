@@ -12,8 +12,24 @@ Company::~Company()
     //std::cout << "Company destructor" << std::endl;
 
     // TODO: Deallocate staff
+    for (auto& entry : all_staff_)
+       {
+           delete entry.second;
+       }
+    for (auto& entry : current_staff_)
+       {
+           delete entry.second;
+       }
+
+
+       // Delete all projects in projects_
+
 
     // TODO: Deallocate projects
+    for (auto& entry : projects_)
+    {
+        delete entry.second;
+    }
 
 }
 
@@ -73,8 +89,6 @@ void Company::recruit(Params params)
     all_staff_.insert({employee_id, new_employee});
     current_staff_.insert({employee_id, new_employee});
     std::cout << EMPLOYEE_RECRUITED << std::endl;
-    delete new_employee;
-    new_employee = nullptr;
 
 }
 
