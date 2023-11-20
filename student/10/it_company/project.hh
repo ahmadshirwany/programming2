@@ -51,6 +51,7 @@ public:
     void remove_employee(const std::string& employee_id);
      std::set<std::string> get_requirements();
      std::set<std::string> get_employes();
+     bool has_employee(const std::string& employee_id) const;
 
 
 

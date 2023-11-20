@@ -14,6 +14,7 @@
 #include <set>
 #include <vector>
 
+
 class Employee
 {
 public:
@@ -88,7 +89,8 @@ private:
      */
     std::string id_;               // Can be a name or any other identifier
     Date date_of_birth_;           // Not actually needed
-    std::set<std::string> skills_; // IT skills
+    std::set<std::string> skills_;
+
 };
 
 #endif // EMPLOYEE_HH

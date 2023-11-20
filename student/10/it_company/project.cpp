@@ -1,5 +1,6 @@
 #include "project.hh"
 #include <iostream>
+#include <employee.hh>
 
 Project::Project(const std::string& id, const std::string& start):
     id_(id), start_(start)
@@ -117,6 +118,20 @@ std::set<std::string> Project::get_employes()
     }
 
     return employees;
+}
+
+bool Project::has_employee(const std::string &employee_id) const
+{
+    // Iterate through the set of assigned employees
+    for (const auto& employee : assigned_employees_) {
+        // Check if the employee_id matches
+        if (employee.second.get_id() == employee_id) {
+            return true; // Employee found
+        }
+    }
+
+    // Employee not found
+    return false;
 }
 
 

@@ -287,8 +287,37 @@ void Company::print_project_info(Params params)
 }
 
 void Company::print_employee_info(Params params)
-{
+{ 
+    std::string employee_id = params.at(0);
 
+        // Check if the employee exists
+        auto employee_iter = all_staff_.find(employee_id);
+        if (employee_iter == all_staff_.end()) {
+            std::cout << CANT_FIND << employee_id << std::endl;
+            return;
+        }
+
+        // Print employee information
+        employee_iter->second->print_skills();
+        std::vector<Project> employes_project ;
+        for(auto p : projects_){
+             std::set<std::string> employes =  p.second->get_employes();
+
+        } std::cout << "Projects:" << std::endl;
+        for (const auto& project_pair : projects_) {
+            const Project* p = project_pair.second;
+
+            // Check if the employee is associated with the project
+            if (p->has_employee(employee_id)) {
+                std::cout << "** " << p->get_id() << " : " ;
+                p->print_start();
+                std::cout<<" - ";
+                if(p->is_closed()){
+                 p->print_end();
+                }
+                std::cout << std::endl;
+      }
+        }
 }
 
 void Company::print_active_staff(Params)
