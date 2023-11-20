@@ -252,7 +252,7 @@ void Company::print_project_info(Params params)
     std::set<std::string> requirements = p->get_requirements();
     std::cout << "** Requirements:";
     if (requirements.empty()) {
-        std::cout << "None";
+        std::cout << " None";
     } else {
         auto iter = requirements.begin();
         while (iter != requirements.end()) {
