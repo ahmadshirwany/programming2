@@ -74,6 +74,8 @@ void Company::recruit(Params params)
     current_staff_.insert({employee_id, new_employee});
     std::cout << EMPLOYEE_RECRUITED << std::endl;
     delete new_employee;
+    new_employee = nullptr;
+
 }
 
 void Company::leave(Params params)
@@ -134,7 +136,7 @@ void Company::create_project(Params params)
         Project *p =  new Project(params.at(0),Utils::today);
         projects_.insert({id,p});
         std::cout<< PROJECT_CREATED <<std::endl;
-        delete p;
+
 }
 
 void Company::close_project(Params params)
