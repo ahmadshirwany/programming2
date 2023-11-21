@@ -1,94 +1,77 @@
 #include "employee.hh"
+
 #include <iostream>
+
 #include <map>
+
 #include <project.hh>
 
-Employee::Employee()
-{
-}
+Employee::Employee() {}
 
-Employee::Employee(const std::string &id):
-    id_(id)
-{
+Employee::Employee(const std::string & id):
+  id_(id) {
     date_of_birth_ = Date();
+  }
+
+Employee::Employee(const std::string & id,
+    const std::string & date_of_birth):
+  id_(id), date_of_birth_(date_of_birth) {}
+
+Employee::~Employee() {
+  //std::cout << "Employee " << id_ << " destructed." << std::endl;
 }
 
-Employee::Employee(const std::string& id, const std::string& date_of_birth):
-    id_(id), date_of_birth_(date_of_birth)
-{
+std::string Employee::get_id() const {
+  return id_;
 }
 
-Employee::~Employee()
-{
-    //std::cout << "Employee " << id_ << " destructed." << std::endl;
+std::set < std::string > Employee::get_skills() const {
+
+  std::set < std::string > skills_vector;
+
+  for (const std::string & skill: skills_) {
+    skills_vector.insert(skill);
+  }
+
+  return skills_vector;
 }
 
-std::string Employee::get_id() const
-{
-    return id_;
+void Employee::add_skill(const std::string & skill) {
+  skills_.insert(skill);
 }
 
-std::set<std::string> Employee::get_skills() const
-{
-
-    std::set<std::string> skills_vector;
-
-    for (const std::string &skill : skills_)
-    {
-        skills_vector.insert(skill);
+bool Employee::has_skill(const std::string & skill) const {
+  for (std::string skill_item: skills_) {
+    if (skill_item == skill) {
+      return true;
     }
-
-    return skills_vector;
+  }
+  return false;
 }
 
-void Employee::add_skill(const std::string& skill)
-{
-    skills_.insert(skill);
+void Employee::print_id(const std::string & pre_text) const {
+  std::cout << pre_text << id_;
+  //date_of_birth_.print();
+  //std::cout << std::endl;
 }
 
-bool Employee::has_skill(const std::string &skill) const
-{
-    for( std::string skill_item : skills_ )
-    {
-        if( skill_item == skill )
-        {
-            return true;
-        }
-    }
-    return false;
-}
+void Employee::print_skills() const {
+  std::cout << "Skills: ";
+  if (skills_.empty()) {
+    std::cout << "None" << std::endl;
+    return;
+  }
 
-void Employee::print_id(const std::string& pre_text) const
-{
-    std::cout << pre_text << id_;
-    //date_of_birth_.print();
-    //std::cout << std::endl;
-}
-
-void Employee::print_skills() const
-{
-    std::cout << "Skills: ";
-    if( skills_.empty() )
-    {
-        std::cout << "None" << std::endl;
-        return;
-    }
-
-    std::set<std::string>::const_iterator iter = skills_.begin();
-    std::cout << *iter; // Printing the first one
+  std::set < std::string > ::const_iterator iter = skills_.begin();
+  std::cout << * iter; // Printing the first one
+  ++iter;
+  while (iter != skills_.end()) {
+    std::cout << ", " << * iter; // Printing the rest
     ++iter;
-    while( iter != skills_.end() )
-    {
-        std::cout << ", " << *iter; // Printing the rest
-        ++iter;
-    }
-    std::cout << std::endl;
+  }
+  std::cout << std::endl;
 }
 
-
-
-
-bool Employee::operator<(const Employee &rhs) const
-{
-    return id_ < rhs.id_;
+bool Employee::operator < (const Employee & rhs) const {
+  return id_ < rhs.id_;
 }
