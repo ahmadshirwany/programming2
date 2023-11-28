@@ -43,7 +43,6 @@ void MainWindow::on_findPushButton_clicked() {
         bool keyFound = false;
         while (std::getline(file, line)) {
             if (!caseSensitive) {
-                        // Convert both the line and search key to lowercase for case-insensitive comparison
                         std::transform(line.begin(), line.end(), line.begin(), ::tolower);
                         std::string lowercaseSearchKey = searchKey;
                         std::transform(lowercaseSearchKey.begin(), lowercaseSearchKey.end(), lowercaseSearchKey.begin(), ::tolower);
