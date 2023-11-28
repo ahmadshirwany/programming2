@@ -23,15 +23,22 @@ void MainWindow::on_countButton_clicked() {
     double weight = weightStr.toDouble(&ok);
     if (!ok) {
         ui->resultLabel->setText("Cannot count");
+        ui->infoTextBrowser->setText("");
         return;
     }
 
     double height = heightStr.toDouble(&ok);
     if (!ok) {
         ui->resultLabel->setText("Cannot count");
+        ui->infoTextBrowser->setText("");
         return;
     }
     double heightMeters = height / 100.0;
+    if (heightMeters == 0.0) {
+            ui->resultLabel->setText("Cannot count");
+            ui->infoTextBrowser->setText("");
+            return;
+        }
     double bmi = weight / (heightMeters * heightMeters);
     ui->resultLabel->setText(QString::number(bmi));
     const double underweightThreshold = 18.5;
