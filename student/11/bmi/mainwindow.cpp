@@ -22,27 +22,29 @@ void MainWindow::on_countButton_clicked() {
     bool ok;
     double weight = weightStr.toDouble(&ok);
     if (!ok) {
-        ui->resultLabel->setText("Invalid weight");
+        ui->resultLabel->setText("Cannot count");
         return;
     }
 
     double height = heightStr.toDouble(&ok);
     if (!ok) {
-        ui->resultLabel->setText("Invalid height");
+        ui->resultLabel->setText("Cannot count");
         return;
     }
     double heightMeters = height / 100.0;
     double bmi = weight / (heightMeters * heightMeters);
     ui->resultLabel->setText(QString::number(bmi));
-    if (bmi< 18.5){
-         ui->infoTextBrowser->setText("Underweight");
-    }
-    else if(bmi< 25){
-        ui->infoTextBrowser->setText("Overweight");
-    }
-    else{
-         ui->infoTextBrowser->setText("Normal range");
-    }
+    const double underweightThreshold = 18.5;
+    const double overweightThreshold = 25.0;
+    QString categoryText;
+        if (bmi < underweightThreshold) {
+            categoryText = "Underweight";
+        } else if (bmi < overweightThreshold) {
+            categoryText = "Normal range";
+        } else {
+            categoryText = "Overweight";
+        }
+        ui->infoTextBrowser->setText(categoryText);
 
 }
 
