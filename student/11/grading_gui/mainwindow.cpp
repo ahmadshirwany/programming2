@@ -35,8 +35,8 @@ void MainWindow::on_calculatePushButton_clicked()
     int score_weekly_exercises = score_from_weekly_exercises(N_points,G_points);
     int score_projects = score_from_projects(P_points);
     QString Text = "W-Score: " + QString::number(score_weekly_exercises) +
-                   "\n P-Score: " + QString::number(score_projects) +
-                   "\n Total grade: " + QString::number(total_grade);
+                   "\nP-Score: " + QString::number(score_projects) +
+                   "\nTotal grade: " + QString::number(total_grade);
     ui->textBrowser->setText(Text);
 
 }
