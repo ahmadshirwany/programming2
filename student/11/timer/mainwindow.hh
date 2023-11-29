@@ -20,18 +20,18 @@ public:
     // class, but due to the automated tests it must be more
     // accessible.
     QTimer* timer;
+    void updateTimerDisplay();
 
 private slots:
     void startButtonClicked();
     void stopButtonClicked();
     void resetButtonClicked();
     void closeButtonClicked();
-    void updateTimerDisplay();
+
     // Add your slots here
 
 private:
     Ui::MainWindow *ui;
-    int currentMinutes;
     int currentSeconds;
     // Add other necessary members here
 };
