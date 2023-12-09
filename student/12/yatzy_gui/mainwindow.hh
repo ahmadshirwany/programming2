@@ -2,6 +2,7 @@
 #define MAINWINDOW_HH
 
 #include <QMainWindow>
+#include "yatzy_game.hh"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,5 +24,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    yatzy_game * Yatzy;
 };
 #endif // MAINWINDOW_HH
