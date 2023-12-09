@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "yatzy_game.hh"
+#include "error.hh"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,5 +26,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     yatzy_game * Yatzy;
+    error * Error_window;
 };
 #endif // MAINWINDOW_HH

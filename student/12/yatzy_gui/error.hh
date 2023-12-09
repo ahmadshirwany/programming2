@@ -13,7 +13,7 @@ class error : public QDialog
     Q_OBJECT
 
 public:
-    explicit error(QWidget *parent = nullptr, std::string error_msg = "");
+    explicit error(QWidget *parent = nullptr, QString error_msg = "");
     ~error();
 
 private:

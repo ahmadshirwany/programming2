@@ -3,6 +3,7 @@
 #include <string>
 #include "gameengine.hh"
 #include "yatzy_game.hh"
+#include "error.hh"
 
 
 
@@ -35,7 +36,19 @@ void MainWindow::on_Enter_clicked()
     }
     else
     {
+        if(!isdigit(player_amount_str.at(0))){
+            Error_window = new  error(this,"Players input should be numbers");
+            Error_window->show();
+            return;
+        }
         //set_players(eng); // recursive call
+        if(player_amount_str.size() != 1){
+            Error_window = new  error(this,"Players input should be less than 10");
+            Error_window->show();
+            return;
+        }
+
+
     }
     for(unsigned int i = 0; i < player_amount; ++i)
     {

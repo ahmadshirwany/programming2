@@ -30,6 +30,7 @@ void GameEngine::update_guide() const
     std::cout << outputstream.str() << std::endl;
 }
 
+
 void GameEngine::roll()
 {
     if(players_.size() <= game_turn_)
@@ -135,7 +136,11 @@ void GameEngine::report_player_status() const
                     textual_description);
     std::cout << textual_description << std::endl;
 }
+unsigned int GameEngine::report_player_status_Gui() const
+{
+   return game_turn_+1;
 
+}
 void GameEngine::update_points(const std::vector<int>& new_points)
 {
     if ( players_.size() <= game_turn_ )

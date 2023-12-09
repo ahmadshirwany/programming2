@@ -50,10 +50,12 @@ public:
     // Tells if the game is over, i.e. if all players have used all their
     // turns.
     bool is_game_over() const;
+    unsigned int report_player_status_Gui() const;
 
 private:
     // Reports the status of the player currently in turn
     void report_player_status() const;
+
 
     // Updates best and latest points of the player in turn:
     // latest_point_values_ will always be new_points,
