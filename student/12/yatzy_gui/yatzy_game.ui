@@ -177,6 +177,45 @@
     <string>Turn Left</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="Roll">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>480</y>
+     <width>84</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Roll</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="give_turn">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>480</y>
+     <width>84</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Give turn</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Quit">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>480</y>
+     <width>84</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

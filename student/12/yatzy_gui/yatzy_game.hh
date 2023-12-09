@@ -15,6 +15,10 @@ class yatzy_game : public QDialog
 public:
     explicit yatzy_game(QWidget *parent = nullptr,  const GameEngine &eng = GameEngine());
     ~yatzy_game();
+    void update_display(const GameEngine &eng);
+
+private slots:
+    void on_Quit_clicked();
 
 private:
     Ui::yatzy_game *ui;
