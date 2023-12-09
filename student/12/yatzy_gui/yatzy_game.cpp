@@ -20,8 +20,11 @@ yatzy_game::yatzy_game(QWidget *parent,const GameEngine &eng) :
     ui->label_5->setPixmap(diceImage5);
     QPixmap diceImage6(":/new/prefix1/6.png");
     ui->label_6->setPixmap(diceImage6);
-    unsigned int p = eng.report_player_status_Gui();
-    ui->label_10->setText(QString::number(p));
+    unsigned int playerno = eng.report_player_status_Gui();
+    ui->label_10->setText(QString::number(playerno));
+    unsigned int turn_left = eng.report_turn_left_Gui();
+     ui->label_13->setText(QString::number(turn_left));
+
 
 }
 

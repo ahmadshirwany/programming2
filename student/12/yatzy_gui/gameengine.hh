@@ -51,6 +51,7 @@ public:
     // turns.
     bool is_game_over() const;
     unsigned int report_player_status_Gui() const;
+    unsigned int report_turn_left_Gui() const;
 
 private:
     // Reports the status of the player currently in turn

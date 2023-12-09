@@ -141,6 +141,11 @@ unsigned int GameEngine::report_player_status_Gui() const
    return game_turn_+1;
 
 }
+unsigned int GameEngine::report_turn_left_Gui() const
+{
+   return players_.at(game_turn_).rolls_left_;
+
+}
 void GameEngine::update_points(const std::vector<int>& new_points)
 {
     if ( players_.size() <= game_turn_ )
