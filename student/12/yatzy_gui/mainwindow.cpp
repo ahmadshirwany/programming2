@@ -28,7 +28,7 @@ void MainWindow::on_Enter_clicked()
 {
     QString lineEditText = ui->lineEdit->text();
     std::string player_amount_str = lineEditText.toStdString();
-    GameEngine eng;
+
     unsigned int player_amount = 0;
     if(player_amount_str.size() == 1 and isdigit(player_amount_str.at(0)))
     {
@@ -50,14 +50,10 @@ void MainWindow::on_Enter_clicked()
 
 
     }
-    for(unsigned int i = 0; i < player_amount; ++i)
-    {
-        Player player = {i + 1, INITIAL_NUMBER_OF_ROLLS, {}, {}};
-        eng.add_player(player);
-    }
+
 
     this->close();
-    Yatzy = new yatzy_game(this,eng);
+    Yatzy = new yatzy_game(this,player_amount);
     Yatzy->show();
 
 }

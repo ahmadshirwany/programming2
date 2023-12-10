@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <sstream>
 
 // Obvious constants
 const int INITIAL_NUMBER_OF_ROLLS = 3;
@@ -37,6 +38,7 @@ public:
     // currently in turn. Moreover, reports the winner, if after the draw, all
     // players have used all their turns.
     void roll();
+    std::ostringstream roll_gui();
 
     // Gives turn for the next player having turns left, i.e. for the next
     // element in the players_ vector. After the last one, turn is given for
@@ -46,12 +48,16 @@ public:
     // Reports a winner based on the current situation and sets the game_over_
     // attribute as true.
     void report_winner();
+    std::string report_winner_gui();
 
     // Tells if the game is over, i.e. if all players have used all their
     // turns.
     bool is_game_over() const;
     unsigned int report_player_status_Gui() const;
     unsigned int report_turn_left_Gui() const;
+    // Returns true if all turns of all players have been used,
+    // otherwise returns false.
+    bool all_turns_used() const;
 
 private:
     // Reports the status of the player currently in turn
@@ -63,9 +69,7 @@ private:
     // best_point_values_ will be new_points, if the last_mentioned is better.
     void update_points(const std::vector<int>& new_points);
 
-    // Returns true if all turns of all players have been used,
-    // otherwise returns false.
-    bool all_turns_used() const;
+
 
     // Vector of all players
     std::vector<Player> players_;

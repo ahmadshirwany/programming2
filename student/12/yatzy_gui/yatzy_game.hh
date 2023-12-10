@@ -13,15 +13,22 @@ class yatzy_game : public QDialog
     Q_OBJECT
 
 public:
-    explicit yatzy_game(QWidget *parent = nullptr,  const GameEngine &eng = GameEngine());
+    explicit yatzy_game(QWidget *parent = nullptr,  unsigned int player_amount = 1);
     ~yatzy_game();
-    void update_display(const GameEngine &eng);
+    void update_display();
 
 private slots:
     void on_Quit_clicked();
 
+    void on_Roll_button_clicked();
+
+    void on_give_turn_button_clicked();
+
+    void on_Quit_button_clicked();
+
 private:
     Ui::yatzy_game *ui;
+    GameEngine eng;
 };
 
 #endif // YATZY_GAME_HH

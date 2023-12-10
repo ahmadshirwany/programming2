@@ -177,7 +177,7 @@
     <string>Turn Left</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Roll">
+  <widget class="QPushButton" name="Roll_button">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -190,7 +190,7 @@
     <string>Roll</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="give_turn">
+  <widget class="QPushButton" name="give_turn_button">
    <property name="geometry">
     <rect>
      <x>350</x>
@@ -203,7 +203,7 @@
     <string>Give turn</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Quit">
+  <widget class="QPushButton" name="Quit_button">
    <property name="geometry">
     <rect>
      <x>590</x>
@@ -214,6 +214,16 @@
    </property>
    <property name="text">
     <string>Quit</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>270</y>
+     <width>561</width>
+     <height>131</height>
+    </rect>
    </property>
   </widget>
  </widget>

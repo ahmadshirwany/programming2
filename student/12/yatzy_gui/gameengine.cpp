@@ -30,6 +30,27 @@ void GameEngine::update_guide() const
     std::cout << outputstream.str() << std::endl;
 }
 
+ostringstream GameEngine::roll_gui()
+{
+    ostringstream outputstream{""};
+    vector<int> new_points;
+    unsigned int dice = 0;
+    std::ostringstream resultString;
+    while ( dice < NUMBER_OF_DICES )
+    {
+        int point_value = roll_dice();
+        resultString << point_value << " ";
+        new_points.push_back(point_value);
+        ++dice;
+    }
+    update_points(new_points);
+    --players_.at(game_turn_).rolls_left_;
+    string textual_description = "";
+    construe_result(players_.at(game_turn_).latest_point_values_,
+                    textual_description);
+    resultString << textual_description << " ";
+    return resultString;
+}
 
 void GameEngine::roll()
 {
@@ -106,7 +127,17 @@ void GameEngine::give_turn()
     // No player has turns left
     report_winner();
 }
-
+string GameEngine::report_winner_gui()
+{
+    vector<vector<int>> all_point_values;
+    for ( auto player : players_ )
+    {
+        all_point_values.push_back(player.best_point_values_);
+    }
+    string winner_text = decide_winner(all_point_values);
+    game_over_ = true;
+    return winner_text;
+}
 void GameEngine::report_winner()
 {
     vector<vector<int>> all_point_values;
