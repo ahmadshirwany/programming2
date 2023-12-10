@@ -20,7 +20,7 @@ class yatzy_game: public QDialog {
   void updateTimerDisplay();
 
   private slots:
-    void on_Quit_clicked();
+    //void on_Quit_clicked();
 
   void on_Roll_button_clicked();
 
