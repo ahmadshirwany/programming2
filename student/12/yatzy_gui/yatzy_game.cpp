@@ -8,10 +8,15 @@
 
 #include <sstream>
 
+#include <QTimer>
+
 yatzy_game::yatzy_game(QWidget * parent, unsigned int num_players):
   QDialog(parent),
   ui(new Ui::yatzy_game),
   player_amount(num_players) {
+    ui -> setupUi(this);
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &yatzy_game::updateTimerDisplay);
     for (unsigned int i = 0; i < player_amount; ++i) {
       Player player = {
         i + 1,
@@ -21,7 +26,7 @@ yatzy_game::yatzy_game(QWidget * parent, unsigned int num_players):
       };
       eng.add_player(player);
     }
-    ui -> setupUi(this);
+    timer->start(1000);
     QPixmap diceImage(":/new/prefix1/1.png");
     ui -> label -> setPixmap(diceImage);
     QPixmap diceImage2(":/new/prefix1/2.png");
@@ -34,7 +39,10 @@ yatzy_game::yatzy_game(QWidget * parent, unsigned int num_players):
     ui -> label_5 -> setPixmap(diceImage5);
     QPixmap diceImage6(":/new/prefix1/6.png");
     ui -> label_6 -> setPixmap(diceImage6);
+
     update_display();
+    currentSeconds = 0;
+    updateTimerDisplay();
 
   }
 
@@ -64,13 +72,12 @@ void yatzy_game::update_display() {
   } else {
     ui -> Roll_button -> setEnabled(true);
   }
-  if (eng.is_game_over()){
-      ui -> give_turn_button -> setEnabled(false);
-      ui -> Quit_button -> setEnabled(false);
-  }
-  else {
-      ui -> give_turn_button -> setEnabled(true);
-      ui -> Quit_button -> setEnabled(true);
+  if (eng.is_game_over()) {
+    ui -> give_turn_button -> setEnabled(false);
+    ui -> Quit_button -> setEnabled(false);
+  } else {
+    ui -> give_turn_button -> setEnabled(true);
+    ui -> Quit_button -> setEnabled(true);
   }
 }
 
@@ -116,4 +123,16 @@ void yatzy_game::on_resetButton_clicked() {
   }
   ui -> textEdit -> clear();
   update_display();
+  currentSeconds = 0;
+  updateTimerDisplay();
+}
+
+void yatzy_game::updateTimerDisplay()
+{
+    // Update the current time on the display
+    currentSeconds++;
+    int min = currentSeconds/60;
+    int sec = currentSeconds %60;
+    ui->lcdNumberSec->display(sec);
+    ui->lcdNumberMin->display(min);
 }

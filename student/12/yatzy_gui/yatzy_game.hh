@@ -16,6 +16,8 @@ class yatzy_game: public QDialog {
     explicit yatzy_game(QWidget * parent = nullptr, unsigned int num_players = 1);
   ~yatzy_game();
   void update_display();
+  QTimer* timer;
+  void updateTimerDisplay();
 
   private slots:
     void on_Quit_clicked();
@@ -32,6 +34,7 @@ class yatzy_game: public QDialog {
     Ui::yatzy_game * ui;
   GameEngine eng;
   unsigned int player_amount;
+  int currentSeconds;
 };
 
 #endif // YATZY_GAME_HH
