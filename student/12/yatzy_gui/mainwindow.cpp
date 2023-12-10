@@ -59,7 +59,7 @@ void MainWindow::on_Enter_clicked()
 }
 
 
-void MainWindow::on_Quit_clicked()
+void MainWindow::on_pushButton_clicked()
 {
     this->close();
 }

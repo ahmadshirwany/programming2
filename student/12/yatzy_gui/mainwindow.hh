@@ -20,8 +20,7 @@ public:
 private slots:
 
     void on_Enter_clicked();
-
-    void on_Quit_clicked();
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

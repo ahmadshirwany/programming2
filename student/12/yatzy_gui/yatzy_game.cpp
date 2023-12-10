@@ -4,9 +4,10 @@
 #include "string"
 #include <sstream>
 
-yatzy_game::yatzy_game(QWidget *parent,unsigned int player_amount) :
+yatzy_game::yatzy_game(QWidget *parent,unsigned int num_players) :
     QDialog(parent),
-    ui(new Ui::yatzy_game)
+    ui(new Ui::yatzy_game),
+     player_amount(num_players)
 {
     for(unsigned int i = 0; i < player_amount; ++i)
     {
@@ -46,6 +47,7 @@ void yatzy_game::update_display(){
     ui->label_10->setText(QString::number(playerno));
     unsigned int turn_left = eng.report_turn_left_Gui();
     ui->label_13->setText(QString::number(turn_left));
+    ui->label_14->setText(QString::number(player_amount));
     if (turn_left==0){
            ui->Roll_button->setEnabled(false);
     }
@@ -93,5 +95,19 @@ void yatzy_game::on_Quit_button_clicked()
     ui->Roll_button->setEnabled(false);
     ui->give_turn_button->setEnabled(false);
     ui->Quit_button->setEnabled(false);
+}
+
+
+void yatzy_game::on_resetButton_clicked()
+{
+    GameEngine newEng;
+    eng = newEng;
+    for(unsigned int i = 0; i < player_amount; ++i)
+    {
+        Player player = {i + 1, INITIAL_NUMBER_OF_ROLLS, {}, {}};
+        eng.add_player(player);
+    }
+    ui->textEdit->clear();
+    update_display();
 }
 
