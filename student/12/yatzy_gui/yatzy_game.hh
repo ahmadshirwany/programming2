@@ -16,13 +16,12 @@ class yatzy_game: public QDialog {
     explicit yatzy_game(QWidget * parent = nullptr, unsigned int num_players = 1);
   ~yatzy_game();
   void update_display();
-  QTimer* timer;
+  QTimer * timer;
   void updateTimerDisplay();
 
   private slots:
-    //void on_Quit_clicked();
 
-  void on_Roll_button_clicked();
+    void on_Roll_button_clicked();
 
   void on_give_turn_button_clicked();
 

@@ -16,7 +16,7 @@ yatzy_game::yatzy_game(QWidget * parent, unsigned int num_players):
   player_amount(num_players) {
     ui -> setupUi(this);
     timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &yatzy_game::updateTimerDisplay);
+    connect(timer, & QTimer::timeout, this, & yatzy_game::updateTimerDisplay);
     for (unsigned int i = 0; i < player_amount; ++i) {
       Player player = {
         i + 1,
@@ -26,7 +26,7 @@ yatzy_game::yatzy_game(QWidget * parent, unsigned int num_players):
       };
       eng.add_player(player);
     }
-    timer->start(1000);
+    timer -> start(1000);
     QPixmap diceImage(":/new/prefix1/1.png");
     ui -> label -> setPixmap(diceImage);
     QPixmap diceImage2(":/new/prefix1/2.png");
@@ -50,15 +50,12 @@ yatzy_game::~yatzy_game() {
   delete ui;
 }
 
-//void yatzy_game::on_Quit_clicked() {
-  //this -> close();
-//}
 void yatzy_game::update_display() {
   unsigned int playerno = eng.report_player_status_Gui();
   ui -> label_10 -> setText(QString::number(playerno));
   unsigned int turn_left = eng.report_turn_left_Gui();
   ui -> label_13 -> setText(QString::number(turn_left));
-  ui -> label_17 -> setText(QString::number(3-turn_left));
+  ui -> label_17 -> setText(QString::number(3 - turn_left));
   ui -> label_14 -> setText(QString::number(player_amount));
   if (eng.all_turns_used()) {
     std::string winner = eng.report_winner_gui();
@@ -128,12 +125,11 @@ void yatzy_game::on_resetButton_clicked() {
   updateTimerDisplay();
 }
 
-void yatzy_game::updateTimerDisplay()
-{
-    // Update the current time on the display
-    currentSeconds++;
-    int min = currentSeconds/60;
-    int sec = currentSeconds %60;
-    ui->lcdNumberSec->display(sec);
-    ui->lcdNumberMin->display(min);
+void yatzy_game::updateTimerDisplay() {
+  // Update the current time on the display
+  currentSeconds++;
+  int min = currentSeconds / 60;
+  int sec = currentSeconds % 60;
+  ui -> lcdNumberSec -> display(sec);
+  ui -> lcdNumberMin -> display(min);
 }

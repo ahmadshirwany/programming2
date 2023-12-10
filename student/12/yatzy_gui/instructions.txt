@@ -1,0 +1,25 @@
+Start a New Game:
+
+Open the Yatzy Game GUI.
+Enter the total number of players in the first window.
+Click "Enter" to proceed to the Yatzy Game window.
+
+Error Handling:
+If the input is incorrect, a pop-up error will appear.
+Use the "Quit" button to exit the game from the first window.
+
+Yatzy Game Interface:
+Once the game starts, a timer will begin, constantly updating.
+The current player's turn is displayed along with the turns left.
+The total number of players is also visible.
+The game information, including roll dice output, is shown in a text editor.
+
+Game Controls:
+Roll Dice Tool Button: Use this button to roll the dice.
+Give Turn Button: Pass the turn to the next player.
+Quit Button: Finish the game and exit.
+Reset Button: Restart the game and reset the timer.
+
+
+
+Enjoy playing Yatzy with our user-friendly GUI!
