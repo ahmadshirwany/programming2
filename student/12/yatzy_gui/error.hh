@@ -2,22 +2,22 @@
 #define ERROR_HH
 
 #include <QDialog>
+
 #include <string>
 
 namespace Ui {
-class error;
+  class error;
 }
 
-class error : public QDialog
-{
-    Q_OBJECT
+class error: public QDialog {
+  Q_OBJECT
 
-public:
-    explicit error(QWidget *parent = nullptr, QString error_msg = "");
-    ~error();
+  public:
+    explicit error(QWidget * parent = nullptr, QString error_msg = "");
+  ~error();
 
-private:
-    Ui::error *ui;
+  private:
+    Ui::error * ui;
 };
 
 #endif // ERROR_HH
