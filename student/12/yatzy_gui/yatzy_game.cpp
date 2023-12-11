@@ -208,6 +208,10 @@ void yatzy_game::on_Pause_button_clicked() {
     ui -> Pause_button -> setEnabled(false);
     ui -> resetButton -> setEnabled(false);
     ui -> unPause_button -> setEnabled(true);
+    ui -> textEdit -> append("Pause");
+    QTextCursor cursor = ui -> textEdit -> textCursor();
+    cursor.movePosition(QTextCursor::End);
+    ui -> textEdit -> setTextCursor(cursor);
     // Add more for checkBox_6 and any additional checkboxes you have
 
   }
@@ -226,6 +230,10 @@ void yatzy_game::on_unPause_button_clicked() {
   ui -> checkBox_5 -> setEnabled(true);
   ui -> Pause_button -> setEnabled(true);
   ui -> unPause_button -> setEnabled(false);
+  ui -> textEdit -> append("Unpause");
+  QTextCursor cursor = ui -> textEdit -> textCursor();
+  cursor.movePosition(QTextCursor::End);
+  ui -> textEdit -> setTextCursor(cursor);
 }
 
 void yatzy_game::animateDiceRoll(QLabel * diceLabel, int value) {
