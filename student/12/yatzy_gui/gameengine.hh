@@ -17,7 +17,7 @@ struct Player {
   unsigned int rolls_left_;
   std::vector < int > latest_point_values_;
   std::vector < int > best_point_values_;
-  std::vector<bool> locked_dice;
+  std::vector < bool > locked_dice;
 };
 
 class GameEngine {
@@ -27,11 +27,11 @@ class GameEngine {
 
   // Destructor
   ~GameEngine();
-    // Vector of all players
-    std::vector < Player > players_;
+  // Vector of all players
+  std::vector < Player > players_;
 
-    // Tells the player currently in turn (index of players_ vector)
-    unsigned int game_turn_;
+  // Tells the player currently in turn (index of players_ vector)
+  unsigned int game_turn_;
   // Adds a new player
   void add_player(const Player player);
 
@@ -43,7 +43,7 @@ class GameEngine {
   // currently in turn. Moreover, reports the winner, if after the draw, all
   // players have used all their turns.
   void roll();
-  std::vector<int> roll_gui();
+  std::vector < int > roll_gui();
 
   // Gives turn for the next player having turns left, i.e. for the next
   // element in the players_ vector. After the last one, turn is given for
@@ -72,8 +72,6 @@ class GameEngine {
   // latest_point_values_ will always be new_points,
   // best_point_values_ will be new_points, if the last_mentioned is better.
   void update_points(const std::vector < int > & new_points);
-
-
 
   // Tells if the game is over
   bool game_over_;

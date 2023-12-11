@@ -23,10 +23,10 @@ MainWindow::~MainWindow() {
 void MainWindow::on_Enter_clicked() {
   QString lineEditText = ui -> lineEdit -> text();
   std::string player_amount_str = lineEditText.toStdString();
-  if(player_amount_str==""){
-      Error_window = new error(this, "Please enter a valid number for the players.");
-      Error_window -> show();
-      return;
+  if (player_amount_str == "") {
+    Error_window = new error(this, "Please enter a valid number for the players.");
+    Error_window -> show();
+    return;
   }
   unsigned int player_amount = 0;
   if (player_amount_str.size() == 1 and isdigit(player_amount_str.at(0))) {
