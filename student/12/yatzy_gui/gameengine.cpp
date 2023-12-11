@@ -12,7 +12,8 @@ GameEngine::GameEngine():
 GameEngine::~GameEngine() {}
 
 void GameEngine::add_player(const Player player) {
-  players_.push_back(player);
+
+    players_.push_back(player);
 }
 
 void GameEngine::update_guide() const {
@@ -28,26 +29,29 @@ void GameEngine::update_guide() const {
   std::cout << outputstream.str() << std::endl;
 }
 
-ostringstream GameEngine::roll_gui() {
-  ostringstream outputstream {
-    ""
-  };
-  vector < int > new_points;
-  unsigned int dice = 0;
-  std::ostringstream resultString;
-  while (dice < NUMBER_OF_DICES) {
-    int point_value = roll_dice();
-    resultString << point_value << " ";
-    new_points.push_back(point_value);
-    ++dice;
-  }
-  update_points(new_points);
-  --players_.at(game_turn_).rolls_left_;
-  string textual_description = "";
-  construe_result(players_.at(game_turn_).latest_point_values_,
-    textual_description);
-  resultString << textual_description << " ";
-  return resultString;
+
+vector<int> GameEngine::roll_gui() {
+    ostringstream outputstream {""};
+    vector<int> new_points;
+
+    for (unsigned int i = 0; i < NUMBER_OF_DICES; ++i) {
+        if (!players_[game_turn_].locked_dice[i]) {
+            int point_value = roll_dice();
+            outputstream << point_value << " ";
+            new_points.push_back(point_value);
+        } else {
+            // If the die is locked, use its previous value
+            outputstream << players_[game_turn_].latest_point_values_[i] << " ";
+            new_points.push_back(players_[game_turn_].latest_point_values_[i]);
+        }
+    }
+
+    update_points(new_points);
+    --players_[game_turn_].rolls_left_;
+
+
+
+    return new_points;
 }
 
 void GameEngine::roll() {

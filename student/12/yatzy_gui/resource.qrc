@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/new/prefix1">
+    <qresource prefix="/images">
         <file>yatzy_gui.pro.user</file>
         <file>empty.png</file>
         <file>6.png</file>

@@ -5,6 +5,8 @@
 
 #include "gameengine.hh"
 
+#include <QLabel>
+
 namespace Ui {
   class yatzy_game;
 }
@@ -14,8 +16,11 @@ class yatzy_game: public QDialog {
 
   public:
     explicit yatzy_game(QWidget * parent = nullptr, unsigned int num_players = 1);
+    void updateLabelImage(QLabel *label, int value);
+
   ~yatzy_game();
   void update_display();
+
   QTimer * timer;
   void updateTimerDisplay();
 
@@ -29,7 +34,22 @@ class yatzy_game: public QDialog {
 
   void on_resetButton_clicked();
 
-  private:
+  void on_checkBox_stateChanged(int arg1);
+
+  void on_checkBox_2_stateChanged(int arg1);
+
+  void on_checkBox_5_stateChanged(int arg1);
+
+  void on_checkBox_3_stateChanged(int arg1);
+
+  void on_checkBox_4_stateChanged(int arg1);
+
+
+  void on_Pause_button_clicked();
+
+  void on_unPause_button_clicked();
+
+private:
     Ui::yatzy_game * ui;
   GameEngine eng;
   unsigned int player_amount;
