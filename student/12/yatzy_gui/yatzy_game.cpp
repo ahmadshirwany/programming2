@@ -12,6 +12,11 @@
 
 #include "functions.hh"
 
+#include <QPropertyAnimation>
+
+#include <QSequentialAnimationGroup>
+
+
 yatzy_game::yatzy_game(QWidget * parent, unsigned int num_players):
   QDialog(parent),
   ui(new Ui::yatzy_game),
@@ -90,13 +95,20 @@ void yatzy_game::on_Roll_button_clicked() {
   QTextCursor cursor = ui -> textEdit -> textCursor();
   cursor.movePosition(QTextCursor::End);
   ui -> textEdit -> setTextCursor(cursor);
-  updateLabelImage(ui -> label, rolledValues[0]);
-  updateLabelImage(ui -> label_2, rolledValues[1]);
-  updateLabelImage(ui -> label_3, rolledValues[2]);
-  updateLabelImage(ui -> label_4, rolledValues[3]);
-  updateLabelImage(ui -> label_5, rolledValues[4]);
+  animateDiceRoll(ui->label, rolledValues[0]);
+  animateDiceRoll(ui->label_2,rolledValues[1]);
+  animateDiceRoll(ui->label_3,rolledValues[2]);
+  animateDiceRoll(ui->label_4,rolledValues[3]);
+  animateDiceRoll(ui->label_5,rolledValues[4]);
+
+  //updateLabelImage(ui -> label, rolledValues[0]);
+  //updateLabelImage(ui -> label_2, rolledValues[1]);
+  //updateLabelImage(ui -> label_3, rolledValues[2]);
+  //updateLabelImage(ui -> label_4, rolledValues[3]);
+  //updateLabelImage(ui -> label_5, rolledValues[4]);
   update_display();
 }
+
 void yatzy_game::updateLabelImage(QLabel * label, int value) {
   QString imagePath = QString(":/images/%1.png").arg(value);
   QPixmap diceImage(imagePath);
@@ -124,6 +136,7 @@ void yatzy_game::on_Quit_button_clicked() {
   ui -> Roll_button -> setEnabled(false);
   ui -> give_turn_button -> setEnabled(false);
   ui -> Quit_button -> setEnabled(false);
+   ui -> Pause_button -> setEnabled(false);
 }
 
 void yatzy_game::on_resetButton_clicked() {
@@ -150,6 +163,12 @@ void yatzy_game::on_resetButton_clicked() {
   ui -> checkBox_5 -> setChecked(false);
   ui -> unPause_button -> setEnabled(false);
   ui -> Pause_button -> setEnabled(true);
+  animateDiceRoll(ui->label, 0);
+  animateDiceRoll(ui->label_2,0);
+  animateDiceRoll(ui->label_3,0);
+  animateDiceRoll(ui->label_4,0);
+  animateDiceRoll(ui->label_5,0);
+
 }
 
 void yatzy_game::updateTimerDisplay() {
@@ -218,3 +237,54 @@ void yatzy_game::on_unPause_button_clicked() {
   ui -> Pause_button -> setEnabled(true);
   ui -> unPause_button -> setEnabled(false);
 }
+
+void yatzy_game::animateDiceRoll(QLabel* diceLabel, int value) {
+    QTimer* timer2 = new QTimer(this);
+    QPixmap emptyDice(":/images/empty.png");
+    QPixmap dice1(":/images/1.png");
+    QPixmap dice2(":/images/2.png");
+    QPixmap dice3(":/images/3.png");
+    QPixmap dice4(":/images/4.png");
+    QPixmap dice5(":/images/5.png");
+    QPixmap dice6(":/images/6.png");
+    int animationStep = 0;
+    const int totalAnimationSteps = 6;  // Number of steps in the animation
+
+    connect(timer2, &QTimer::timeout, [=]() mutable {
+        if (animationStep < totalAnimationSteps) {
+            switch (animationStep) {
+                case 0:
+                    diceLabel->setPixmap(dice1);
+                    break;
+                case 1:
+                    diceLabel->setPixmap(dice2);
+                    break;
+                case 2:
+                    diceLabel->setPixmap(dice3);
+                    break;
+                case 3:
+                    diceLabel->setPixmap(dice4);
+                    break;
+                case 4:
+                    diceLabel->setPixmap(dice5);
+                    break;
+                case 5:
+                    diceLabel->setPixmap(dice6);
+                    break;
+            }
+        } else {
+            // Stop the timer after completing the animation
+            QString imagePath = QString(":/images/%1.png").arg(value);
+            QPixmap diceImage(imagePath);
+            diceLabel->setPixmap(diceImage);
+            timer2->stop();
+            timer2->deleteLater();
+        }
+
+        animationStep++;
+    });
+
+    // Set the timer interval and start it
+    timer2->start(100);
+}
+
