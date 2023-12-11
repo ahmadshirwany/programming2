@@ -16,8 +16,7 @@ class yatzy_game: public QDialog {
 
   public:
     explicit yatzy_game(QWidget * parent = nullptr, unsigned int num_players = 1);
-  void updateLabelImage(QLabel * label, int value);
-  void animateDiceRoll(QLabel* diceLabel,int dice);
+  void animateDiceRoll(QLabel * diceLabel, int dice);
   QPixmap getDiceImage(int value);
 
   ~yatzy_game();
