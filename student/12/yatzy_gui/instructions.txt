@@ -1,25 +1,32 @@
 Start a New Game:
 
-Open the Yatzy Game GUI.
-Enter the total number of players in the first window.
-Click "Enter" to proceed to the Yatzy Game window.
+- Open the Yatzy Game GUI.
+- Enter the total number of players in the first window.
+- Click "Enter" to proceed to the Yatzy Game window.
 
 Error Handling:
-If the input is incorrect, a pop-up error will appear.
-Use the "Quit" button to exit the game from the first window.
+- If the input is incorrect, a pop-up error will appear.
+- Use the "Quit" button to exit the game from the first window.
 
 Yatzy Game Interface:
-Once the game starts, a timer will begin, constantly updating.
-The current player's turn is displayed along with the turns left.
-The total number of players is also visible.
-The game information, including roll dice output, is shown in a text editor.
+- Once the game starts, a timer will begin, constantly updating.
+- The current player's turn is displayed along with the turns left.
+- The total number of players is also visible.
+- The roll dice output can be seen in the images of the dice.
+- The game information, including pairs and the winner, is shown in a text editor.
 
 Game Controls:
-Roll Dice Tool Button: Use this button to roll the dice.
-Give Turn Button: Pass the turn to the next player.
-Quit Button: Finish the game and exit.
-Reset Button: Restart the game and reset the timer.
+- Roll Dice Tool Button: Use this button to roll the dice.
+- Give Turn Button: Pass the turn to the next player.
+- Quit Button: Finish the game and exit.
+- Reset Button: Restart the game and reset the timer.
+- Pause Button: Will pause the game and the timer and disable all the buttons except unpause.
+-Unpause Button: Will enable when the pause button is clicked and it will be used to unpause the timer and the game.
 
-
+Added Extra Features:
+-Dices have been implemented with the png figures given in the template code
+-Drawn dices not just appear, but their rolling has been animated.
+-The user can set the number of players in the user interface in the start.
+-The game has a pause button, from which the user can pause the timer. This is possible only when the game is on. Pause has e.g. the effect that the game does not response to key commands any more. The game informs about the pause for the user.
 
 Enjoy playing Yatzy with our user-friendly GUI!
