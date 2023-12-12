@@ -71,6 +71,7 @@ void yatzy_game::update_display() {
     QTextCursor cursor = ui -> textEdit -> textCursor();
     cursor.movePosition(QTextCursor::End);
     ui -> textEdit -> setTextCursor(cursor);
+    ui->Pause_button->setEnabled(false);
   }
   if (turn_left == 0) {
     ui -> Roll_button -> setEnabled(false);
